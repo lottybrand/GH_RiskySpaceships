@@ -1,0 +1,265 @@
+"ID"	"Sex"	"SEX"	"Age"	"Edu"	"Country"	"CHINA"	"Condition"	"CONDITION"	"Round"	"Score"	"Rank"	"CHOICE"	"choice"	"RISK"	"q1"	"q2"	"q3"	"q4"	"q5"	"q6"	"q7"	"q8"	"q9"	"q10"	"q11"	"q12"	"personalityScore"	"personalityScoreR2"
+"1"	1	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	25000	1	1	"builds"	0	2	2	1	1	1	1	1	3	1	1	1	1	16	0.266666667
+"2"	1	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	16850	3	1	"builds"	0	2	2	1	1	1	1	1	3	1	1	1	1	16	0.266666667
+"3"	1	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	8780	5	2	"scrapheap"	1	2	2	1	1	1	1	1	3	1	1	1	1	16	0.266666667
+"4"	2	"Female"	2	"18-25"	"College Diploma"	"Austria"	0	"saferisky"	3	1	25000	1	1	"builds"	0	2	4	4	2	3	4	4	2	2	1	1	2	31	0.516666667
+"5"	2	"Female"	2	"18-25"	"College Diploma"	"Austria"	0	"saferisky"	3	3	16850	3	1	"builds"	0	2	4	4	2	3	4	4	2	2	1	1	2	31	0.516666667
+"6"	2	"Female"	2	"18-25"	"College Diploma"	"Austria"	0	"saferisky"	3	2	8780	5	2	"scrapheap"	1	2	4	4	2	3	4	4	2	2	1	1	2	31	0.516666667
+"7"	3	"Female"	2	"18-25"	"Undergraduate Degree"	"Norway"	0	"saferisky"	3	3	25000	1	1	"builds"	0	3	4	1	1	1	3	2	2	3	2	2	3	27	0.45
+"8"	3	"Female"	2	"18-25"	"Undergraduate Degree"	"Norway"	0	"saferisky"	3	1	16850	3	1	"builds"	0	3	4	1	1	1	3	2	2	3	2	2	3	27	0.45
+"9"	3	"Female"	2	"18-25"	"Undergraduate Degree"	"Norway"	0	"saferisky"	3	2	8780	5	1	"builds"	0	3	4	1	1	1	3	2	2	3	2	2	3	27	0.45
+"10"	4	"Female"	2	"18-25"	"Undergraduate Degree"	"Denmark"	0	"safesafe"	2	3	25000	1	2	"scrapheap"	0	3	4	3	1	1	3	1	1	1	1	1	1	21	0.35
+"11"	4	"Female"	2	"18-25"	"Undergraduate Degree"	"Denmark"	0	"safesafe"	2	2	16850	3	2	"scrapheap"	0	3	4	3	1	1	3	1	1	1	1	1	1	21	0.35
+"12"	4	"Female"	2	"18-25"	"Undergraduate Degree"	"Denmark"	0	"safesafe"	2	1	8780	5	2	"scrapheap"	0	3	4	3	1	1	3	1	1	1	1	1	1	21	0.35
+"13"	5	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"saferisky"	3	1	25000	1	2	"scrapheap"	1	1	4	1	1	2	5	5	2	1	1	1	1	25	0.416666667
+"14"	5	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"saferisky"	3	3	16850	3	2	"scrapheap"	1	1	4	1	1	2	5	5	2	1	1	1	1	25	0.416666667
+"15"	5	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"saferisky"	3	2	8780	5	1	"builds"	0	1	4	1	1	2	5	5	2	1	1	1	1	25	0.416666667
+"16"	6	"Female"	2	"18-25"	"Undergraduate Degree"	"China"	1	"saferisky"	3	3	25000	1	2	"scrapheap"	1	1	4	4	3	1	3	2	2	1	1	2	2	26	0.433333333
+"17"	6	"Female"	2	"18-25"	"Undergraduate Degree"	"China"	1	"saferisky"	3	1	16850	3	1	"builds"	0	1	4	4	3	1	3	2	2	1	1	2	2	26	0.433333333
+"18"	6	"Female"	2	"18-25"	"Undergraduate Degree"	"China"	1	"saferisky"	3	2	8780	5	1	"builds"	0	1	4	4	3	1	3	2	2	1	1	2	2	26	0.433333333
+"19"	7	"Female"	2	"18-25"	"Secondary"	"United Kingdom"	0	"safesafe"	2	1	25000	1	2	"scrapheap"	0	2	3	3	2	2	5	1	1	1	1	1	1	23	0.383333333
+"20"	7	"Female"	2	"18-25"	"Secondary"	"United Kingdom"	0	"safesafe"	2	3	16850	3	2	"scrapheap"	0	2	3	3	2	2	5	1	1	1	1	1	1	23	0.383333333
+"21"	7	"Female"	2	"18-25"	"Secondary"	"United Kingdom"	0	"safesafe"	2	2	8780	5	2	"scrapheap"	0	2	3	3	2	2	5	1	1	1	1	1	1	23	0.383333333
+"22"	8	"Female"	2	"18-25"	"Secondary"	"Czech Republic"	0	"saferisky"	3	1	25000	1	2	"scrapheap"	1	4	5	4	3	3	4	1	1	1	1	1	3	31	0.516666667
+"23"	8	"Female"	2	"18-25"	"Secondary"	"Czech Republic"	0	"saferisky"	3	3	16850	3	1	"builds"	0	4	5	4	3	3	4	1	1	1	1	1	3	31	0.516666667
+"24"	8	"Female"	2	"18-25"	"Secondary"	"Czech Republic"	0	"saferisky"	3	2	8780	5	2	"scrapheap"	1	4	5	4	3	3	4	1	1	1	1	1	3	31	0.516666667
+"25"	9	"Male"	1	"under 18"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	25000	1	1	"builds"	0	4	4	2	3	1	1	2	1	1	1	1	3	24	0.4
+"26"	9	"Male"	1	"under 18"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	16850	3	2	"scrapheap"	1	4	4	2	3	1	1	2	1	1	1	1	3	24	0.4
+"27"	9	"Male"	1	"under 18"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	8780	5	2	"scrapheap"	1	4	4	2	3	1	1	2	1	1	1	1	3	24	0.4
+"28"	10	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	25000	1	2	"scrapheap"	0	3	4	1	1	2	4	2	2	1	1	1	1	23	0.383333333
+"29"	10	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	16850	3	1	"builds"	0	3	4	1	1	2	4	2	2	1	1	1	1	23	0.383333333
+"30"	10	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	8780	5	2	"scrapheap"	0	3	4	1	1	2	4	2	2	1	1	1	1	23	0.383333333
+"31"	11	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	25000	1	2	"scrapheap"	0	3	3	2	1	1	3	1	1	2	2	1	2	22	0.366666667
+"32"	11	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	16850	3	2	"scrapheap"	0	3	3	2	1	1	3	1	1	2	2	1	2	22	0.366666667
+"33"	11	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	8780	5	1	"builds"	0	3	3	2	1	1	3	1	1	2	2	1	2	22	0.366666667
+"34"	12	"Male"	1	"18-25"	"Secondary"	"Latvia"	0	"safesafe"	2	1	25000	1	2	"scrapheap"	0	5	5	2	1	1	1	3	2	1	1	1	2	25	0.416666667
+"35"	12	"Male"	1	"18-25"	"Secondary"	"Latvia"	0	"safesafe"	2	3	16850	3	2	"scrapheap"	0	5	5	2	1	1	1	3	2	1	1	1	2	25	0.416666667
+"36"	12	"Male"	1	"18-25"	"Secondary"	"Latvia"	0	"safesafe"	2	2	8780	5	1	"builds"	0	5	5	2	1	1	1	3	2	1	1	1	2	25	0.416666667
+"37"	13	"Male"	1	"18-25"	"Postgraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	25000	1	1	"builds"	0	2	4	4	2	1	4	4	1	3	1	1	1	28	0.466666667
+"38"	13	"Male"	1	"18-25"	"Postgraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	16850	3	1	"builds"	0	2	4	4	2	1	4	4	1	3	1	1	1	28	0.466666667
+"39"	13	"Male"	1	"18-25"	"Postgraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	8780	5	2	"scrapheap"	0	2	4	4	2	1	4	4	1	3	1	1	1	28	0.466666667
+"40"	14	"Female"	2	"18-25"	"Postgraduate Degree"	"India"	0	"saferisky"	3	1	25000	1	2	"scrapheap"	1	2	1	1	1	1	3	1	1	2	1	2	3	19	0.316666667
+"41"	14	"Female"	2	"18-25"	"Postgraduate Degree"	"India"	0	"saferisky"	3	3	16850	3	1	"builds"	0	2	1	1	1	1	3	1	1	2	1	2	3	19	0.316666667
+"42"	14	"Female"	2	"18-25"	"Postgraduate Degree"	"India"	0	"saferisky"	3	2	8780	5	1	"builds"	0	2	1	1	1	1	3	1	1	2	1	2	3	19	0.316666667
+"43"	15	"Male"	1	"26-35"	"Postgraduate Degree"	"United Kingdom"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	2	3	1	1	1	5	2	1	1	1	2	1	21	0.35
+"44"	15	"Male"	1	"26-35"	"Postgraduate Degree"	"United Kingdom"	0	"riskysafe"	1	2	16850	3	2	"scrapheap"	0	2	3	1	1	1	5	2	1	1	1	2	1	21	0.35
+"45"	15	"Male"	1	"26-35"	"Postgraduate Degree"	"United Kingdom"	0	"riskysafe"	1	1	8780	5	1	"builds"	1	2	3	1	1	1	5	2	1	1	1	2	1	21	0.35
+"46"	16	"Female"	2	"18-25"	"Undergraduate Degree"	"Switzerland"	0	"safesafe"	2	1	25000	1	1	"builds"	0	2	1	2	1	1	2	2	2	1	1	1	1	17	0.283333333
+"47"	16	"Female"	2	"18-25"	"Undergraduate Degree"	"Switzerland"	0	"safesafe"	2	3	16850	3	1	"builds"	0	2	1	2	1	1	2	2	2	1	1	1	1	17	0.283333333
+"48"	16	"Female"	2	"18-25"	"Undergraduate Degree"	"Switzerland"	0	"safesafe"	2	2	8780	5	2	"scrapheap"	0	2	1	2	1	1	2	2	2	1	1	1	1	17	0.283333333
+"49"	17	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	25000	1	1	"builds"	0	3	1	2	1	1	5	1	1	1	1	1	1	19	0.316666667
+"50"	17	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	16850	3	1	"builds"	0	3	1	2	1	1	5	1	1	1	1	1	1	19	0.316666667
+"51"	17	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	8780	5	2	"scrapheap"	1	3	1	2	1	1	5	1	1	1	1	1	1	19	0.316666667
+"52"	18	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	1	25000	1	2	"scrapheap"	0	2	4	1	2	3	4	2	1	1	1	1	1	23	0.383333333
+"53"	18	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	3	16850	3	1	"builds"	1	2	4	1	2	3	4	2	1	1	1	1	1	23	0.383333333
+"54"	18	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	2	8780	5	1	"builds"	1	2	4	1	2	3	4	2	1	1	1	1	1	23	0.383333333
+"55"	19	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	3	25000	1	1	"builds"	0	3	2	1	1	1	4	4	1	1	2	2	4	26	0.433333333
+"56"	19	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	2	16850	3	1	"builds"	0	3	2	1	1	1	4	4	1	1	2	2	4	26	0.433333333
+"57"	19	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	1	8780	5	2	"scrapheap"	0	3	2	1	1	1	4	4	1	1	2	2	4	26	0.433333333
+"58"	20	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"saferisky"	3	3	25000	1	1	"builds"	0	2	4	5	4	5	2	5	1	2	1	1	3	35	0.583333333
+"59"	20	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"saferisky"	3	1	16850	3	2	"scrapheap"	1	2	4	5	4	5	2	5	1	2	1	1	3	35	0.583333333
+"60"	20	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"saferisky"	3	2	8780	5	2	"scrapheap"	1	2	4	5	4	5	2	5	1	2	1	1	3	35	0.583333333
+"61"	21	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	1	25000	1	1	"builds"	0	2	1	1	1	1	1	2	1	2	1	1	1	15	0.25
+"62"	21	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	2	16850	3	1	"builds"	0	2	1	1	1	1	1	2	1	2	1	1	1	15	0.25
+"63"	21	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	3	8780	5	2	"scrapheap"	0	2	1	1	1	1	1	2	1	2	1	1	1	15	0.25
+"64"	22	"Female"	2	"18-25"	"Secondary"	"Austria"	0	"safesafe"	2	1	25000	1	2	"scrapheap"	0	4	4	3	1	1	1	1	1	1	1	2	1	21	0.35
+"65"	22	"Female"	2	"18-25"	"Secondary"	"Austria"	0	"safesafe"	2	2	16850	3	2	"scrapheap"	0	4	4	3	1	1	1	1	1	1	1	2	1	21	0.35
+"66"	22	"Female"	2	"18-25"	"Secondary"	"Austria"	0	"safesafe"	2	3	8780	5	1	"builds"	0	4	4	3	1	1	1	1	1	1	1	2	1	21	0.35
+"67"	23	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	25000	1	2	"scrapheap"	1	4	4	4	3	3	4	4	2	2	1	1	1	33	0.55
+"68"	23	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	16850	3	1	"builds"	0	4	4	4	3	3	4	4	2	2	1	1	1	33	0.55
+"69"	23	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	8780	5	1	"builds"	0	4	4	4	3	3	4	4	2	2	1	1	1	33	0.55
+"70"	24	"Male"	1	"18-25"	"Postgraduate Degree"	"Czech Republic"	0	"saferisky"	3	1	25000	1	1	"builds"	0	1	2	1	2	3	3	4	4	1	1	1	1	24	0.4
+"71"	24	"Male"	1	"18-25"	"Postgraduate Degree"	"Czech Republic"	0	"saferisky"	3	2	16850	3	2	"scrapheap"	1	1	2	1	2	3	3	4	4	1	1	1	1	24	0.4
+"72"	24	"Male"	1	"18-25"	"Postgraduate Degree"	"Czech Republic"	0	"saferisky"	3	3	8780	5	2	"scrapheap"	1	1	2	1	2	3	3	4	4	1	1	1	1	24	0.4
+"73"	25	"Male"	1	"18-25"	"Secondary"	"Turkey"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	5	5	5	5	1	1	2	5	4	5	4	5	47	0.783333333
+"74"	25	"Male"	1	"18-25"	"Secondary"	"Turkey"	0	"riskysafe"	1	2	16850	3	1	"builds"	1	5	5	5	5	1	1	2	5	4	5	4	5	47	0.783333333
+"75"	25	"Male"	1	"18-25"	"Secondary"	"Turkey"	0	"riskysafe"	1	1	8780	5	1	"builds"	1	5	5	5	5	1	1	2	5	4	5	4	5	47	0.783333333
+"76"	26	"Male"	1	"18-25"	"Secondary"	"United Kingdom"	0	"safesafe"	2	3	25000	1	2	"scrapheap"	0	2	2	2	1	2	3	1	2	1	1	2	1	20	0.333333333
+"77"	26	"Male"	1	"18-25"	"Secondary"	"United Kingdom"	0	"safesafe"	2	1	16850	3	2	"scrapheap"	0	2	2	2	1	2	3	1	2	1	1	2	1	20	0.333333333
+"78"	26	"Male"	1	"18-25"	"Secondary"	"United Kingdom"	0	"safesafe"	2	2	8780	5	2	"scrapheap"	0	2	2	2	1	2	3	1	2	1	1	2	1	20	0.333333333
+"79"	27	"Female"	2	"18-25"	"Undergraduate Degree"	"Slovakia"	0	"safesafe"	2	3	25000	1	1	"builds"	0	3	5	4	2	1	1	1	1	2	2	1	4	27	0.45
+"80"	27	"Female"	2	"18-25"	"Undergraduate Degree"	"Slovakia"	0	"safesafe"	2	1	16850	3	1	"builds"	0	3	5	4	2	1	1	1	1	2	2	1	4	27	0.45
+"81"	27	"Female"	2	"18-25"	"Undergraduate Degree"	"Slovakia"	0	"safesafe"	2	2	8780	5	2	"scrapheap"	0	3	5	4	2	1	1	1	1	2	2	1	4	27	0.45
+"82"	28	"Female"	2	"18-25"	"Undergraduate Degree"	"United States"	0	"riskysafe"	1	1	25000	1	1	"builds"	1	4	4	3	4	4	5	2	3	4	2	3	1	39	0.65
+"83"	28	"Female"	2	"18-25"	"Undergraduate Degree"	"United States"	0	"riskysafe"	1	3	16850	3	2	"scrapheap"	0	4	4	3	4	4	5	2	3	4	2	3	1	39	0.65
+"84"	28	"Female"	2	"18-25"	"Undergraduate Degree"	"United States"	0	"riskysafe"	1	2	8780	5	2	"scrapheap"	0	4	4	3	4	4	5	2	3	4	2	3	1	39	0.65
+"85"	29	"Female"	2	"18-25"	"Secondary"	"Italy"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	1	4	2	2	1	1	1	1	1	1	1	1	17	0.283333333
+"86"	29	"Female"	2	"18-25"	"Secondary"	"Italy"	0	"riskysafe"	1	1	16850	3	2	"scrapheap"	0	1	4	2	2	1	1	1	1	1	1	1	1	17	0.283333333
+"87"	29	"Female"	2	"18-25"	"Secondary"	"Italy"	0	"riskysafe"	1	2	8780	5	1	"builds"	1	1	4	2	2	1	1	1	1	1	1	1	1	17	0.283333333
+"88"	30	"Female"	2	"18-25"	"Undergraduate Degree"	"Canada"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	1	3	1	1	1	1	3	3	1	1	4	1	21	0.35
+"89"	30	"Female"	2	"18-25"	"Undergraduate Degree"	"Canada"	0	"riskysafe"	1	2	16850	3	2	"scrapheap"	0	1	3	1	1	1	1	3	3	1	1	4	1	21	0.35
+"90"	30	"Female"	2	"18-25"	"Undergraduate Degree"	"Canada"	0	"riskysafe"	1	1	8780	5	2	"scrapheap"	0	1	3	1	1	1	1	3	3	1	1	4	1	21	0.35
+"91"	31	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	25000	1	1	"builds"	0	1	2	1	1	1	1	1	1	1	1	1	1	13	0.216666667
+"92"	31	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	16850	3	1	"builds"	0	1	2	1	1	1	1	1	1	1	1	1	1	13	0.216666667
+"93"	31	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	8780	5	2	"scrapheap"	1	1	2	1	1	1	1	1	1	1	1	1	1	13	0.216666667
+"94"	32	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	25000	1	2	"scrapheap"	0	2	4	1	1	1	1	1	1	2	1	1	1	17	0.283333333
+"95"	32	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	16850	3	2	"scrapheap"	0	2	4	1	1	1	1	1	1	2	1	1	1	17	0.283333333
+"96"	32	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	8780	5	2	"scrapheap"	0	2	4	1	1	1	1	1	1	2	1	1	1	17	0.283333333
+"97"	33	"Female"	2	"18-25"	"Undergraduate Degree"	"United States"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	2	5	3	4	1	1	1	1	1	1	1	1	22	0.366666667
+"98"	33	"Female"	2	"18-25"	"Undergraduate Degree"	"United States"	0	"riskysafe"	1	1	16850	3	2	"scrapheap"	0	2	5	3	4	1	1	1	1	1	1	1	1	22	0.366666667
+"99"	33	"Female"	2	"18-25"	"Undergraduate Degree"	"United States"	0	"riskysafe"	1	2	8780	5	2	"scrapheap"	0	2	5	3	4	1	1	1	1	1	1	1	1	22	0.366666667
+"100"	34	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	4	4	2	2	3	4	4	2	2	1	2	3	33	0.55
+"101"	34	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	1	16850	3	1	"builds"	1	4	4	2	2	3	4	4	2	2	1	2	3	33	0.55
+"102"	34	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	2	8780	5	2	"scrapheap"	0	4	4	2	2	3	4	4	2	2	1	2	3	33	0.55
+"103"	35	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	25000	1	1	"builds"	0	2	3	1	1	3	1	1	1	1	1	1	1	17	0.283333333
+"104"	35	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	16850	3	2	"scrapheap"	1	2	3	1	1	3	1	1	1	1	1	1	1	17	0.283333333
+"105"	35	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	8780	5	2	"scrapheap"	1	2	3	1	1	3	1	1	1	1	1	1	1	17	0.283333333
+"106"	36	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	2	25000	1	2	"scrapheap"	0	4	4	1	1	2	3	2	1	1	1	1	3	24	0.4
+"107"	36	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	1	16850	3	1	"builds"	1	4	4	1	1	2	3	2	1	1	1	1	3	24	0.4
+"108"	36	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	3	8780	5	1	"builds"	1	4	4	1	1	2	3	2	1	1	1	1	3	24	0.4
+"109"	37	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	2	25000	1	1	"builds"	1	1	5	1	1	5	5	4	5	1	1	1	1	31	0.516666667
+"110"	37	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	3	16850	3	1	"builds"	1	1	5	1	1	5	5	4	5	1	1	1	1	31	0.516666667
+"111"	37	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	1	8780	5	1	"builds"	1	1	5	1	1	5	5	4	5	1	1	1	1	31	0.516666667
+"112"	38	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	3	3	4	2	1	1	1	1	1	1	1	1	20	0.333333333
+"113"	38	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"riskysafe"	1	1	16850	3	2	"scrapheap"	0	3	3	4	2	1	1	1	1	1	1	1	1	20	0.333333333
+"114"	38	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"riskysafe"	1	2	8780	5	1	"builds"	1	3	3	4	2	1	1	1	1	1	1	1	1	20	0.333333333
+"115"	39	"Female"	2	"18-25"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	1	25000	1	2	"scrapheap"	0	1	1	1	3	1	4	1	1	1	1	1	1	17	0.283333333
+"116"	39	"Female"	2	"18-25"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	3	16850	3	2	"scrapheap"	0	1	1	1	3	1	4	1	1	1	1	1	1	17	0.283333333
+"117"	39	"Female"	2	"18-25"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	2	8780	5	1	"builds"	1	1	1	1	3	1	4	1	1	1	1	1	1	17	0.283333333
+"118"	40	"Female"	2	"18-25"	"Undergraduate Degree"	"India"	0	"riskysafe"	1	1	25000	1	1	"builds"	1	2	4	3	1	1	4	2	1	1	4	4	1	28	0.466666667
+"119"	40	"Female"	2	"18-25"	"Undergraduate Degree"	"India"	0	"riskysafe"	1	2	16850	3	1	"builds"	1	2	4	3	1	1	4	2	1	1	4	4	1	28	0.466666667
+"120"	40	"Female"	2	"18-25"	"Undergraduate Degree"	"India"	0	"riskysafe"	1	3	8780	5	2	"scrapheap"	0	2	4	3	1	1	4	2	1	1	4	4	1	28	0.466666667
+"121"	41	"Female"	2	"26-35"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	2	25000	1	2	"scrapheap"	0	1	1	1	1	1	3	1	1	1	1	1	1	14	0.233333333
+"122"	41	"Female"	2	"26-35"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	1	16850	3	2	"scrapheap"	0	1	1	1	1	1	3	1	1	1	1	1	1	14	0.233333333
+"123"	41	"Female"	2	"26-35"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	3	8780	5	2	"scrapheap"	0	1	1	1	1	1	3	1	1	1	1	1	1	14	0.233333333
+"124"	42	"Female"	2	"18-25"	"Undergraduate Degree"	"Slovenia"	0	"safesafe"	2	2	25000	1	2	"scrapheap"	0	4	3	2	2	4	2	3	3	2	2	2	2	31	0.516666667
+"125"	42	"Female"	2	"18-25"	"Undergraduate Degree"	"Slovenia"	0	"safesafe"	2	1	16850	3	2	"scrapheap"	0	4	3	2	2	4	2	3	3	2	2	2	2	31	0.516666667
+"126"	42	"Female"	2	"18-25"	"Undergraduate Degree"	"Slovenia"	0	"safesafe"	2	3	8780	5	2	"scrapheap"	0	4	3	2	2	4	2	3	3	2	2	2	2	31	0.516666667
+"127"	43	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	25000	1	2	"scrapheap"	0	4	4	2	3	5	5	2	2	2	4	4	2	39	0.65
+"128"	43	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	16850	3	2	"scrapheap"	0	4	4	2	3	5	5	2	2	2	4	4	2	39	0.65
+"129"	43	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	8780	5	2	"scrapheap"	0	4	4	2	3	5	5	2	2	2	4	4	2	39	0.65
+"130"	44	"Male"	1	"18-25"	"Undergraduate Degree"	"Poland"	0	"saferisky"	3	1	25000	1	1	"builds"	0	4	4	2	2	4	4	4	3	2	2	1	2	34	0.566666667
+"131"	44	"Male"	1	"18-25"	"Undergraduate Degree"	"Poland"	0	"saferisky"	3	3	16850	3	1	"builds"	0	4	4	2	2	4	4	4	3	2	2	1	2	34	0.566666667
+"132"	44	"Male"	1	"18-25"	"Undergraduate Degree"	"Poland"	0	"saferisky"	3	2	8780	5	2	"scrapheap"	1	4	4	2	2	4	4	4	3	2	2	1	2	34	0.566666667
+"133"	45	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	25000	1	2	"scrapheap"	0	5	5	4	3	5	4	4	1	2	2	3	3	41	0.683333333
+"134"	45	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	16850	3	1	"builds"	0	5	5	4	3	5	4	4	1	2	2	3	3	41	0.683333333
+"135"	45	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	8780	5	2	"scrapheap"	0	5	5	4	3	5	4	4	1	2	2	3	3	41	0.683333333
+"136"	46	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	25000	1	2	"scrapheap"	0	2	2	2	1	1	1	2	1	1	1	1	3	18	0.3
+"137"	46	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	16850	3	1	"builds"	0	2	2	2	1	1	1	2	1	1	1	1	3	18	0.3
+"138"	46	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	8780	5	2	"scrapheap"	0	2	2	2	1	1	1	2	1	1	1	1	3	18	0.3
+"139"	47	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	1	25000	1	2	"scrapheap"	0	5	4	1	1	3	2	4	2	1	1	1	1	26	0.433333333
+"140"	47	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	2	16850	3	1	"builds"	0	5	4	1	1	3	2	4	2	1	1	1	1	26	0.433333333
+"141"	47	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	3	8780	5	1	"builds"	0	5	4	1	1	3	2	4	2	1	1	1	1	26	0.433333333
+"142"	48	"Female"	2	"18-25"	"Postgraduate Degree"	"Canada"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	2	5	3	2	1	1	1	1	1	1	1	1	20	0.333333333
+"143"	48	"Female"	2	"18-25"	"Postgraduate Degree"	"Canada"	0	"riskysafe"	1	1	16850	3	1	"builds"	1	2	5	3	2	1	1	1	1	1	1	1	1	20	0.333333333
+"144"	48	"Female"	2	"18-25"	"Postgraduate Degree"	"Canada"	0	"riskysafe"	1	2	8780	5	2	"scrapheap"	0	2	5	3	2	1	1	1	1	1	1	1	1	20	0.333333333
+"145"	49	"Female"	2	"18-25"	"Postgraduate Degree"	"Romania"	0	"saferisky"	3	1	25000	1	2	"scrapheap"	1	5	3	4	1	4	4	4	1	1	1	1	1	30	0.5
+"146"	49	"Female"	2	"18-25"	"Postgraduate Degree"	"Romania"	0	"saferisky"	3	3	16850	3	1	"builds"	0	5	3	4	1	4	4	4	1	1	1	1	1	30	0.5
+"147"	49	"Female"	2	"18-25"	"Postgraduate Degree"	"Romania"	0	"saferisky"	3	2	8780	5	1	"builds"	0	5	3	4	1	4	4	4	1	1	1	1	1	30	0.5
+"148"	50	"Male"	1	"18-25"	"Postgraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	25000	1	2	"scrapheap"	1	5	3	1	2	1	2	1	1	1	1	1	1	20	0.333333333
+"149"	50	"Male"	1	"18-25"	"Postgraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	16850	3	1	"builds"	0	5	3	1	2	1	2	1	1	1	1	1	1	20	0.333333333
+"150"	50	"Male"	1	"18-25"	"Postgraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	8780	5	1	"builds"	0	5	3	1	2	1	2	1	1	1	1	1	1	20	0.333333333
+"151"	51	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	25000	1	2	"scrapheap"	1	1	4	3	2	1	4	4	3	1	1	1	1	26	0.433333333
+"152"	51	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	16850	3	1	"builds"	0	1	4	3	2	1	4	4	3	1	1	1	1	26	0.433333333
+"153"	51	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	8780	5	1	"builds"	0	1	4	3	2	1	4	4	3	1	1	1	1	26	0.433333333
+"154"	52	"Male"	1	"18-25"	"Undergraduate Degree"	"Cyprus"	0	"riskysafe"	1	1	25000	1	2	"scrapheap"	0	5	5	5	4	5	5	5	3	3	3	1	2	46	0.766666667
+"155"	52	"Male"	1	"18-25"	"Undergraduate Degree"	"Cyprus"	0	"riskysafe"	1	3	16850	3	2	"scrapheap"	0	5	5	5	4	5	5	5	3	3	3	1	2	46	0.766666667
+"156"	52	"Male"	1	"18-25"	"Undergraduate Degree"	"Cyprus"	0	"riskysafe"	1	2	8780	5	2	"scrapheap"	0	5	5	5	4	5	5	5	3	3	3	1	2	46	0.766666667
+"157"	53	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	25000	1	2	"scrapheap"	1	1	4	1	1	5	5	3	2	2	1	3	1	29	0.483333333
+"158"	53	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	16850	3	1	"builds"	0	1	4	1	1	5	5	3	2	2	1	3	1	29	0.483333333
+"159"	53	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	8780	5	2	"scrapheap"	1	1	4	1	1	5	5	3	2	2	1	3	1	29	0.483333333
+"160"	54	"Male"	1	"18-25"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	1	25000	1	2	"scrapheap"	0	2	4	2	3	1	1	2	2	2	1	2	3	25	0.416666667
+"161"	54	"Male"	1	"18-25"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	3	16850	3	2	"scrapheap"	0	2	4	2	3	1	1	2	2	2	1	2	3	25	0.416666667
+"162"	54	"Male"	1	"18-25"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	2	8780	5	1	"builds"	1	2	4	2	3	1	1	2	2	2	1	2	3	25	0.416666667
+"163"	55	"Male"	1	"18-25"	"Undergraduate Degree"	"Canada"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	1	4	2	1	1	3	3	1	1	1	1	1	20	0.333333333
+"164"	55	"Male"	1	"18-25"	"Undergraduate Degree"	"Canada"	0	"riskysafe"	1	1	16850	3	2	"scrapheap"	0	1	4	2	1	1	3	3	1	1	1	1	1	20	0.333333333
+"165"	55	"Male"	1	"18-25"	"Undergraduate Degree"	"Canada"	0	"riskysafe"	1	2	8780	5	2	"scrapheap"	0	1	4	2	1	1	3	3	1	1	1	1	1	20	0.333333333
+"166"	56	"Male"	1	"18-25"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	1	25000	1	2	"scrapheap"	0	2	2	4	1	3	3	3	2	1	2	2	1	26	0.433333333
+"167"	56	"Male"	1	"18-25"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	2	16850	3	1	"builds"	1	2	2	4	1	3	3	3	2	1	2	2	1	26	0.433333333
+"168"	56	"Male"	1	"18-25"	"Postgraduate Degree"	"China"	1	"riskysafe"	1	3	8780	5	2	"scrapheap"	0	2	2	4	1	3	3	3	2	1	2	2	1	26	0.433333333
+"169"	57	"Male"	1	"26-35"	"Postgraduate Degree"	"Germany"	0	"safesafe"	2	2	25000	1	1	"builds"	0	4	4	4	2	1	5	5	1	1	1	1	4	33	0.55
+"170"	57	"Male"	1	"26-35"	"Postgraduate Degree"	"Germany"	0	"safesafe"	2	3	16850	3	2	"scrapheap"	0	4	4	4	2	1	5	5	1	1	1	1	4	33	0.55
+"171"	57	"Male"	1	"26-35"	"Postgraduate Degree"	"Germany"	0	"safesafe"	2	1	8780	5	2	"scrapheap"	0	4	4	4	2	1	5	5	1	1	1	1	4	33	0.55
+"172"	58	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	25000	1	1	"builds"	0	4	3	3	2	4	2	2	1	1	1	1	2	26	0.433333333
+"173"	58	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	16850	3	1	"builds"	0	4	3	3	2	4	2	2	1	1	1	1	2	26	0.433333333
+"174"	58	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	8780	5	2	"scrapheap"	1	4	3	3	2	4	2	2	1	1	1	1	2	26	0.433333333
+"175"	59	"Male"	1	"26-35"	"Postgraduate Degree"	"United States"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	3	3	3	1	1	1	3	1	1	1	5	1	24	0.4
+"176"	59	"Male"	1	"26-35"	"Postgraduate Degree"	"United States"	0	"riskysafe"	1	1	16850	3	2	"scrapheap"	0	3	3	3	1	1	1	3	1	1	1	5	1	24	0.4
+"177"	59	"Male"	1	"26-35"	"Postgraduate Degree"	"United States"	0	"riskysafe"	1	2	8780	5	2	"scrapheap"	0	3	3	3	1	1	1	3	1	1	1	5	1	24	0.4
+"178"	60	"Female"	2	"18-25"	"Undergraduate Degree"	"China"	1	"saferisky"	3	1	25000	1	1	"builds"	0	5	5	5	5	4	3	4	4	4	2	2	4	47	0.783333333
+"179"	60	"Female"	2	"18-25"	"Undergraduate Degree"	"China"	1	"saferisky"	3	3	16850	3	1	"builds"	0	5	5	5	5	4	3	4	4	4	2	2	4	47	0.783333333
+"180"	60	"Female"	2	"18-25"	"Undergraduate Degree"	"China"	1	"saferisky"	3	2	8780	5	2	"scrapheap"	1	5	5	5	5	4	3	4	4	4	2	2	4	47	0.783333333
+"181"	61	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	25000	1	2	"scrapheap"	0	2	4	3	2	1	3	1	1	1	1	1	3	23	0.383333333
+"182"	61	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	16850	3	2	"scrapheap"	0	2	4	3	2	1	3	1	1	1	1	1	3	23	0.383333333
+"183"	61	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	8780	5	2	"scrapheap"	0	2	4	3	2	1	3	1	1	1	1	1	3	23	0.383333333
+"184"	62	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	25000	1	1	"builds"	0	3	4	2	2	1	2	2	2	1	1	4	2	26	0.433333333
+"185"	62	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	16850	3	1	"builds"	0	3	4	2	2	1	2	2	2	1	1	4	2	26	0.433333333
+"186"	62	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	8780	5	2	"scrapheap"	1	3	4	2	2	1	2	2	2	1	1	4	2	26	0.433333333
+"187"	63	"Female"	2	"18-25"	"Undergraduate Degree"	"Canada"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	4	4	2	1	1	2	2	1	1	1	1	1	21	0.35
+"188"	63	"Female"	2	"18-25"	"Undergraduate Degree"	"Canada"	0	"riskysafe"	1	1	16850	3	1	"builds"	1	4	4	2	1	1	2	2	1	1	1	1	1	21	0.35
+"189"	63	"Female"	2	"18-25"	"Undergraduate Degree"	"Canada"	0	"riskysafe"	1	2	8780	5	1	"builds"	1	4	4	2	1	1	2	2	1	1	1	1	1	21	0.35
+"190"	64	"Female"	2	"26-35"	"Postgraduate Degree"	"China"	1	"saferisky"	3	3	25000	1	1	"builds"	0	1	1	1	1	1	1	1	1	1	1	1	1	12	0.2
+"191"	64	"Female"	2	"26-35"	"Postgraduate Degree"	"China"	1	"saferisky"	3	2	16850	3	2	"scrapheap"	1	1	1	1	1	1	1	1	1	1	1	1	1	12	0.2
+"192"	64	"Female"	2	"26-35"	"Postgraduate Degree"	"China"	1	"saferisky"	3	1	8780	5	1	"builds"	0	1	1	1	1	1	1	1	1	1	1	1	1	12	0.2
+"193"	65	"Female"	2	"18-25"	"Undergraduate Degree"	"Croatia"	0	"riskysafe"	1	1	25000	1	2	"scrapheap"	0	4	4	1	1	1	1	1	1	1	1	2	1	19	0.316666667
+"194"	65	"Female"	2	"18-25"	"Undergraduate Degree"	"Croatia"	0	"riskysafe"	1	2	8780	5	1	"builds"	1	4	4	1	1	1	1	1	1	1	1	2	1	19	0.316666667
+"195"	65	"Female"	2	"18-25"	"Undergraduate Degree"	"Croatia"	0	"riskysafe"	1	3	NA	NA	1	"builds"	1	4	4	1	1	1	1	1	1	1	1	2	1	19	0.316666667
+"196"	66	"Female"	2	"18-25"	"Secondary"	"Colombia"	0	"safesafe"	2	3	25000	1	2	"scrapheap"	0	2	5	3	4	4	4	2	1	1	1	1	1	29	0.483333333
+"197"	66	"Female"	2	"18-25"	"Secondary"	"Colombia"	0	"safesafe"	2	1	16850	3	1	"builds"	0	2	5	3	4	4	4	2	1	1	1	1	1	29	0.483333333
+"198"	66	"Female"	2	"18-25"	"Secondary"	"Colombia"	0	"safesafe"	2	2	8780	5	1	"builds"	0	2	5	3	4	4	4	2	1	1	1	1	1	29	0.483333333
+"199"	67	"Female"	2	"18-25"	"Postgraduate Degree"	"China"	1	"safesafe"	2	3	16850	3	2	"scrapheap"	0	3	3	3	3	3	3	3	3	3	3	3	3	36	0.6
+"200"	67	"Female"	2	"18-25"	"Postgraduate Degree"	"China"	1	"safesafe"	2	1	8780	5	2	"scrapheap"	0	3	3	3	3	3	3	3	3	3	3	3	3	36	0.6
+"201"	67	"Female"	2	"18-25"	"Postgraduate Degree"	"China"	1	"safesafe"	2	2	NA	NA	2	"scrapheap"	0	3	3	3	3	3	3	3	3	3	3	3	3	36	0.6
+"202"	68	"Female"	2	"18-25"	"Undergraduate Degree"	"China"	1	"saferisky"	3	2	25000	1	1	"builds"	0	1	2	1	3	1	2	2	1	1	4	2	2	22	0.366666667
+"203"	68	"Female"	2	"18-25"	"Undergraduate Degree"	"China"	1	"saferisky"	3	3	16850	3	2	"scrapheap"	1	1	2	1	3	1	2	2	1	1	4	2	2	22	0.366666667
+"204"	68	"Female"	2	"18-25"	"Undergraduate Degree"	"China"	1	"saferisky"	3	1	8780	5	1	"builds"	0	1	2	1	3	1	2	2	1	1	4	2	2	22	0.366666667
+"205"	69	"Male"	1	"18-25"	"Secondary"	"United States"	0	"saferisky"	3	2	25000	1	1	"builds"	0	3	4	1	1	4	4	4	1	1	1	1	1	26	0.433333333
+"206"	69	"Male"	1	"18-25"	"Secondary"	"United States"	0	"saferisky"	3	1	16850	3	1	"builds"	0	3	4	1	1	4	4	4	1	1	1	1	1	26	0.433333333
+"207"	69	"Male"	1	"18-25"	"Secondary"	"United States"	0	"saferisky"	3	3	8780	5	1	"builds"	0	3	4	1	1	4	4	4	1	1	1	1	1	26	0.433333333
+"208"	70	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	25000	1	1	"builds"	0	2	1	1	2	2	3	1	1	1	1	1	1	17	0.283333333
+"209"	70	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	16850	3	2	"scrapheap"	0	2	1	1	2	2	3	1	1	1	1	1	1	17	0.283333333
+"210"	70	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	8780	5	2	"scrapheap"	0	2	1	1	2	2	3	1	1	1	1	1	1	17	0.283333333
+"211"	71	"Male"	1	"36-45"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	25000	1	1	"builds"	0	1	3	1	2	2	1	4	1	1	1	1	1	19	0.316666667
+"212"	71	"Male"	1	"36-45"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	16850	3	1	"builds"	0	1	3	1	2	2	1	4	1	1	1	1	1	19	0.316666667
+"213"	71	"Male"	1	"36-45"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	8780	5	2	"scrapheap"	0	1	3	1	2	2	1	4	1	1	1	1	1	19	0.316666667
+"214"	72	"Female"	2	"18-25"	"Undergraduate Degree"	"Greece"	0	"riskysafe"	1	2	25000	1	1	"builds"	1	3	2	4	2	4	4	1	2	1	1	1	2	27	0.45
+"215"	72	"Female"	2	"18-25"	"Undergraduate Degree"	"Greece"	0	"riskysafe"	1	3	16850	3	1	"builds"	1	3	2	4	2	4	4	1	2	1	1	1	2	27	0.45
+"216"	72	"Female"	2	"18-25"	"Undergraduate Degree"	"Greece"	0	"riskysafe"	1	1	8780	5	2	"scrapheap"	0	3	2	4	2	4	4	1	2	1	1	1	2	27	0.45
+"217"	73	"Male"	1	"18-25"	"Secondary"	"United States"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	5	5	4	3	5	1	5	5	2	1	1	1	38	0.633333333
+"218"	73	"Male"	1	"18-25"	"Secondary"	"United States"	0	"riskysafe"	1	1	16850	3	2	"scrapheap"	0	5	5	4	3	5	1	5	5	2	1	1	1	38	0.633333333
+"219"	73	"Male"	1	"18-25"	"Secondary"	"United States"	0	"riskysafe"	1	2	8780	5	2	"scrapheap"	0	5	5	4	3	5	1	5	5	2	1	1	1	38	0.633333333
+"220"	74	"Male"	1	"36-45"	"Postgraduate Degree"	"United Kingdom"	0	"riskysafe"	1	2	25000	1	2	"scrapheap"	0	3	4	4	2	3	2	2	2	1	1	3	1	28	0.466666667
+"221"	74	"Male"	1	"36-45"	"Postgraduate Degree"	"United Kingdom"	0	"riskysafe"	1	3	16850	3	2	"scrapheap"	0	3	4	4	2	3	2	2	2	1	1	3	1	28	0.466666667
+"222"	74	"Male"	1	"36-45"	"Postgraduate Degree"	"United Kingdom"	0	"riskysafe"	1	1	8780	5	1	"builds"	1	3	4	4	2	3	2	2	2	1	1	3	1	28	0.466666667
+"223"	75	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	3	25000	1	2	"scrapheap"	0	2	2	1	1	5	5	5	2	2	1	1	3	30	0.5
+"224"	75	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	2	16850	3	2	"scrapheap"	0	2	2	1	1	5	5	5	2	2	1	1	3	30	0.5
+"225"	75	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"safesafe"	2	1	8780	5	1	"builds"	0	2	2	1	1	5	5	5	2	2	1	1	3	30	0.5
+"226"	76	"Female"	2	"18-25"	"Postgraduate Degree"	"Russian Federation"	0	"riskysafe"	1	1	25000	1	1	"builds"	1	1	3	2	1	1	1	1	1	1	1	1	1	15	0.25
+"227"	76	"Female"	2	"18-25"	"Postgraduate Degree"	"Russian Federation"	0	"riskysafe"	1	2	16850	3	2	"scrapheap"	0	1	3	2	1	1	1	1	1	1	1	1	1	15	0.25
+"228"	76	"Female"	2	"18-25"	"Postgraduate Degree"	"Russian Federation"	0	"riskysafe"	1	3	8780	5	2	"scrapheap"	0	1	3	2	1	1	1	1	1	1	1	1	1	15	0.25
+"229"	77	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	25000	1	1	"builds"	0	1	3	2	1	3	5	1	4	1	2	3	4	30	0.5
+"230"	77	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	16850	3	1	"builds"	0	1	3	2	1	3	5	1	4	1	2	3	4	30	0.5
+"231"	77	"Female"	2	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	8780	5	2	"scrapheap"	1	1	3	2	1	3	5	1	4	1	2	3	4	30	0.5
+"232"	78	"Female"	2	"18-25"	"Undergraduate Degree"	"Viet Nam"	0	"safesafe"	2	2	25000	1	2	"scrapheap"	0	1	2	1	3	1	1	1	1	1	1	1	1	15	0.25
+"233"	78	"Female"	2	"18-25"	"Undergraduate Degree"	"Viet Nam"	0	"safesafe"	2	1	16850	3	2	"scrapheap"	0	1	2	1	3	1	1	1	1	1	1	1	1	15	0.25
+"234"	78	"Female"	2	"18-25"	"Undergraduate Degree"	"Viet Nam"	0	"safesafe"	2	3	8780	5	2	"scrapheap"	0	1	2	1	3	1	1	1	1	1	1	1	1	15	0.25
+"235"	79	"Female"	2	"18-25"	"Secondary"	"United Kingdom"	0	"riskysafe"	1	2	25000	1	2	"scrapheap"	0	2	1	1	1	1	2	1	1	1	1	1	2	15	0.25
+"236"	79	"Female"	2	"18-25"	"Secondary"	"United Kingdom"	0	"riskysafe"	1	3	16850	3	2	"scrapheap"	0	2	1	1	1	1	2	1	1	1	1	1	2	15	0.25
+"237"	79	"Female"	2	"18-25"	"Secondary"	"United Kingdom"	0	"riskysafe"	1	1	8780	5	2	"scrapheap"	0	2	1	1	1	1	2	1	1	1	1	1	2	15	0.25
+"238"	80	"Male"	1	"18-25"	"Secondary"	"United States"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	3	4	4	2	2	5	2	1	1	1	1	2	28	0.466666667
+"239"	80	"Male"	1	"18-25"	"Secondary"	"United States"	0	"riskysafe"	1	2	16850	3	2	"scrapheap"	0	3	4	4	2	2	5	2	1	1	1	1	2	28	0.466666667
+"240"	80	"Male"	1	"18-25"	"Secondary"	"United States"	0	"riskysafe"	1	1	8780	5	2	"scrapheap"	0	3	4	4	2	2	5	2	1	1	1	1	2	28	0.466666667
+"241"	81	"Female"	2	"18-25"	"Undergraduate Degree"	"Italy"	0	"riskysafe"	1	2	25000	1	2	"scrapheap"	0	3	4	3	4	3	3	2	3	1	2	1	3	32	0.533333333
+"242"	81	"Female"	2	"18-25"	"Undergraduate Degree"	"Italy"	0	"riskysafe"	1	1	16850	3	2	"scrapheap"	0	3	4	3	4	3	3	2	3	1	2	1	3	32	0.533333333
+"243"	81	"Female"	2	"18-25"	"Undergraduate Degree"	"Italy"	0	"riskysafe"	1	3	8780	5	1	"builds"	1	3	4	3	4	3	3	2	3	1	2	1	3	32	0.533333333
+"244"	82	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	2	25000	1	2	"scrapheap"	1	2	3	1	1	2	4	3	3	2	2	2	1	26	0.433333333
+"245"	82	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	1	16850	3	2	"scrapheap"	1	2	3	1	1	2	4	3	3	2	2	2	1	26	0.433333333
+"246"	82	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"saferisky"	3	3	8780	5	2	"scrapheap"	1	2	3	1	1	2	4	3	3	2	2	2	1	26	0.433333333
+"247"	83	"Female"	2	"18-25"	"Undergraduate Degree"	"Korea Republic of"	0	"saferisky"	3	1	25000	1	2	"scrapheap"	1	4	3	2	2	1	4	2	1	1	2	1	2	25	0.416666667
+"248"	83	"Female"	2	"18-25"	"Undergraduate Degree"	"Korea Republic of"	0	"saferisky"	3	2	16850	3	1	"builds"	0	4	3	2	2	1	4	2	1	1	2	1	2	25	0.416666667
+"249"	83	"Female"	2	"18-25"	"Undergraduate Degree"	"Korea Republic of"	0	"saferisky"	3	3	8780	5	1	"builds"	0	4	3	2	2	1	4	2	1	1	2	1	2	25	0.416666667
+"250"	84	"Male"	1	"18-25"	"Secondary"	"United Kingdom"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	1	3	1	1	3	5	4	2	1	1	1	1	24	0.4
+"251"	84	"Male"	1	"18-25"	"Secondary"	"United Kingdom"	0	"riskysafe"	1	1	16850	3	2	"scrapheap"	0	1	3	1	1	3	5	4	2	1	1	1	1	24	0.4
+"252"	84	"Male"	1	"18-25"	"Secondary"	"United Kingdom"	0	"riskysafe"	1	2	8780	5	1	"builds"	1	1	3	1	1	3	5	4	2	1	1	1	1	24	0.4
+"253"	85	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	2	25000	1	1	"builds"	0	2	4	4	1	1	1	2	1	1	1	1	3	22	0.366666667
+"254"	85	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	1	16850	3	1	"builds"	0	2	4	4	1	1	1	2	1	1	1	1	3	22	0.366666667
+"255"	85	"Male"	1	"18-25"	"Undergraduate Degree"	"Malaysia"	0	"safesafe"	2	3	8780	5	2	"scrapheap"	0	2	4	4	1	1	1	2	1	1	1	1	3	22	0.366666667
+"256"	86	"Female"	2	"18-25"	"Undergraduate Degree"	"Hong Kong"	0	"riskysafe"	1	2	25000	1	1	"builds"	1	3	2	1	1	1	3	3	2	1	1	2	1	21	0.35
+"257"	86	"Female"	2	"18-25"	"Undergraduate Degree"	"Hong Kong"	0	"riskysafe"	1	3	16850	3	1	"builds"	1	3	2	1	1	1	3	3	2	1	1	2	1	21	0.35
+"258"	86	"Female"	2	"18-25"	"Undergraduate Degree"	"Hong Kong"	0	"riskysafe"	1	1	8780	5	1	"builds"	1	3	2	1	1	1	3	3	2	1	1	2	1	21	0.35
+"259"	87	"Female"	2	"18-25"	"College Diploma"	"Poland"	0	"safesafe"	2	3	25000	1	2	"scrapheap"	0	4	4	2	1	1	2	1	1	2	1	1	2	22	0.366666667
+"260"	87	"Female"	2	"18-25"	"College Diploma"	"Poland"	0	"safesafe"	2	1	16850	3	1	"builds"	0	4	4	2	1	1	2	1	1	2	1	1	2	22	0.366666667
+"261"	87	"Female"	2	"18-25"	"College Diploma"	"Poland"	0	"safesafe"	2	2	8780	5	2	"scrapheap"	0	4	4	2	1	1	2	1	1	2	1	1	2	22	0.366666667
+"262"	88	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	3	25000	1	2	"scrapheap"	0	2	1	2	1	1	1	1	1	1	2	2	2	17	0.283333333
+"263"	88	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	1	16850	3	1	"builds"	1	2	1	2	1	1	1	1	1	1	2	2	2	17	0.283333333
+"264"	88	"Male"	1	"18-25"	"Undergraduate Degree"	"United Kingdom"	0	"riskysafe"	1	2	8780	5	1	"builds"	1	2	1	2	1	1	1	1	1	1	2	2	2	17	0.283333333
