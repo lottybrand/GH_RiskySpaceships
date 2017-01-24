@@ -7,9 +7,9 @@ myData <- read.delim('./spaceshipData.txt')
 myData = na.omit(myData)
 
 #preparing the data for the model:
-colnames(myData)[3] <- "Gender"
+colnames(myData)[2] <- "Gender"
 myData$Sex <- myData$SEX -1
-colnames(myData)[9] <- "CondName"
+colnames(myData)[8] <- "CondName"
 myData$Condition <- myData$CONDITION -2
 Choice <- myData$CHOICE -1
 myData$Choice <- myData$CHOICE -1
