@@ -55,6 +55,7 @@ full_model <- map2stan(
   data=myData, warmup=1000, iter=6000, chains=1, cores=1 )
 
 precis(full_model)
+plot(full_model)
 
 #Null model
 
@@ -110,9 +111,9 @@ compare(full_model,null_model,just_sex,just_conditions,just_interactions)
 
 just_interactions_sex <- map2stan(
   alist(Choice ~ dbinom(1, p),
-        logit(p) <- a + b_sex*Sex + b_sex_AsocialRisky*Sex*AsocialRisky + b_sex_SocialRisky*Sex*SocialRisky,  
+        logit(p) <- a + b_s*Sex + b_s_AR*Sex*AsocialRisky + b_s_SR*Sex*SocialRisky,  
         a ~ dnorm(0,10),
-        c( b_sex,b_sex_AsocialRisky, b_sex_SocialRisky) ~ dnorm(0,4)
+        c( b_s, b_s_AR, b_s_SR) ~ dnorm(0,4)
   ),
   data=myData, warmup=1000, iter=6000, chains=1, cores=1 )
 
