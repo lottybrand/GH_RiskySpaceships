@@ -79,3 +79,17 @@ precis(multilevelModel2)
 plot(multiLevelModel)
 plot(multilevelModel2)
 compare(just_interactions_sex, multiLevelModel, multilevelModel2)
+
+#rank random effect only 
+multilevelModel3 <- map2stan(
+  alist(Choice ~ dbinom(1, p),
+        logit(p) <- a + b_s*Sex + b_s_AR*Sex*AsocialRisky + b_s_SR*Sex*SocialRisky + a_r[Rank],
+        a ~ dnorm(0,10),
+        c(b_s, b_s_AR, b_s_SR) ~ dnorm(0,4),
+        a_r[Rank] ~ dnorm(0, sigma_r),
+        sigma_r ~ dcauchy(0,1)
+  ),
+  data=myData, warmup=1000, iter=3000, chains=4, cores=1 )
+
+precis(multilevelModel3)
+compare(multilevelModel3, just_interactions_sex)
