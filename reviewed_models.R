@@ -33,29 +33,49 @@ for (index in 1:NParticipants){
 }
 myData$ParticipantID <- ParticipantID
 
-#best model for comparison:
+#best model from previous set for comparison:
 
 just_interactions_sex <- map2stan(
   alist(Choice ~ dbinom(1, p),
         logit(p) <- a + b_sex*Sex + b_sex_AsocialRisky*Sex*AsocialRisky + b_sex_SocialRisky*Sex*SocialRisky,  
         a ~ dnorm(0,10),
-        c( b_sex,b_sex_AsocialRisky, b_sex_SocialRisky) ~ dnorm(0,4)
+        c(b_sex,b_sex_AsocialRisky, b_sex_SocialRisky) ~ dnorm(0,4)
   ),
-  data=myData, warmup=1000, iter=6000, chains=1, cores=1 )
+  data=myData, warmup=1000, iter=3000, chains=4, cores=1 )
 
 precis(just_interactions_sex)
 
-#
+#adding participant random effect
 multiLevelModel <- map2stan(
   alist(Choice ~ dbinom(1, p),
-        logit(p) <- a + b_s*Sex + b_AR*AsocialRisky + b_SR*SocialRisky + b_s_AR*Sex*AsocialRisky + b_s_SR*Sex*SocialRisky + a_p[ParticipantID],  
-        c(a, b_s, b_AR, b_SR, b_s_AR, b_s_SR) ~ dnorm(0,5),
+        logit(p) <- a + b_s*Sex + b_s_AR*Sex*AsocialRisky + b_s_SR*Sex*SocialRisky + a_p[ParticipantID],
+        a ~ dnorm(0,10),
+        c(b_s, b_s_AR, b_s_SR) ~ dnorm(0,4),
         a_p[ParticipantID] ~ dnorm(0, sigma_p),
         sigma_p ~ dcauchy(0,1)
   ),
-  data=myData, warmup=1000, iter=6000, chains=1, cores=1 )
+  data=myData, warmup=1000, iter=3000, chains=4, cores=1 )
 
 precis(multiLevelModel)
 compare(multiLevelModel, just_interactions_sex)
 plot(just_interactions_sex)
 plot(multiLevelModel)
+
+
+#rank random effect as well? 
+multilevelModel2 <- map2stan(
+  alist(Choice ~ dbinom(1, p),
+        logit(p) <- a + b_s*Sex + b_s_AR*Sex*AsocialRisky + b_s_SR*Sex*SocialRisky + a_p[ParticipantID] + a_r[Rank],
+        a ~ dnorm(0,10),
+        c(b_s, b_s_AR, b_s_SR) ~ dnorm(0,4),
+        a_p[ParticipantID] ~ dnorm(0, sigma_p),
+        a_r[Rank] ~ dnorm(0, sigma_r),
+        sigma_p ~ dcauchy(0,1),
+        sigma_r ~ dcauchy(0,1)
+  ),
+  data=myData, warmup=1000, iter=3000, chains=4, cores=1 )
+
+precis(multilevelModel2)
+plot(multiLevelModel)
+plot(multilevelModel2)
+compare(just_interactions_sex, multiLevelModel, multilevelModel2)
