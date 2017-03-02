@@ -93,3 +93,58 @@ multilevelModel3 <- map2stan(
 
 precis(multilevelModel3)
 compare(multilevelModel3, just_interactions_sex)
+plot(multilevelModel3)
+
+#McElreath's multilevel with non-centred parameterisation
+
+mm <- map2stan(
+  alist(
+    Choice ~ dbinom(1, p),
+    logit(p) <- a + a_p[ID]*sigma_p + 
+      b_s*Sex + 
+      b_AR*AsocialRisky + 
+      b_SR*SocialRisky +
+      b_s_AR*Sex*AsocialRisky + 
+      b_s_SR*Sex*SocialRisky +
+      b_r*Rank +
+      b_p*Personality,
+    a ~ dnorm(0,10),
+    c(b_s, b_s_AR, b_s_SR, b_r, b_AR, b_SR, b_p) ~ dnorm(0,4),
+    a_p[ID] ~ dnorm(0,1),
+    sigma_p ~ dcauchy(0,1)
+  ),
+  data=myData, constraints=list(sigma_p="lower=0"), 
+  warmup=1000, iter=2000, chains=3, cores=3 )
+
+precis(mm)
+
+trying_page378 <- list(
+  prosoc_left = c(0,1,0,1),
+  condition = c(0,0,1,1),
+  actor = rep(2,4))
+
+
+#trying McElreath's order model
+
+mm3 <- map2stan(
+  alist(
+    Choice ~ dbinom(1, p),
+    logit(p) <- a + a_p[ID]*sigma_p + 
+      b_s*Sex + 
+      b_AR*AsocialRisky + 
+      b_SR*SocialRisky +
+      b_s_AR*Sex*AsocialRisky + 
+      b_s_SR*Sex*SocialRisky +
+      b_p*Personality +
+      b_order*Rank +
+      a_r[Rank],
+    a ~ dnorm(0,10),
+    c(b_s, b_s_AR, b_s_SR, b_AR, b_SR, b_p, b_order) ~ dnorm(0,4),
+    a_p[ID] ~ dnorm(0,1),
+    a_r[Rank] ~ dnorm(0,1),
+    sigma_p ~ dcauchy(0,1)
+  ),
+  data=myData, constraints=list(sigma_p="lower=0"), 
+  warmup=1000, iter=2000, chains=3, cores=3 )
+
+precis(mm3)

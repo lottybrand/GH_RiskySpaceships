@@ -1,0 +1,36 @@
+                       WAIC pWAIC dWAIC weight    SE  dSE
+just_interactions_sex 349.6   8.4   0.0   0.52  9.77   NA
+just_interactions     351.1   8.0   1.5   0.25  9.11 3.59
+just_conditions       352.0   8.1   2.4   0.16  8.77 5.51
+just_conditions_sex   354.0   9.4   4.5   0.06  8.92 5.49
+FullModel             357.1  13.9   7.5   0.01 10.36 2.63
+NullModel             360.3   7.7  10.7   0.00  5.10 8.05
+just_sex              362.3   9.4  12.7   0.00  5.32 7.8
+
+results from just_interactions_sex:
+
+         Mean StdDev lower 0.89 upper 0.89 n_eff Rhat
+a       -0.41   0.19      -0.72      -0.10  3000    1
+b_s     -0.72   0.41      -1.36      -0.05  2216    1
+b_s_AR   1.76   0.46       1.03       2.51  2353    1
+b_s_SR   0.62   0.47      -0.09       1.40  2260    1
+sigma_p  0.24   0.18       0.00       0.48   987    1
+
+> logistic(-0.41)
+[1] 0.3989121
+> logistic(0.41)
+[1] 0.6010879
+> logistic(-0.41 + 1.76)
+[1] 0.7941296
+> prob_a <- logistic(-0.41)
+> prob_b_s_AR <- logistic(1.76)
+> prob_b_s_AR - prob_a
+[1] 0.4542975
+
+so you're 45% more likely to choose social if you are a woman in the AR condition than if you are a man in the control condition? 
+
+> prob_s <- logistic(-0.72)
+> prob_s - prob_b_s_AR
+[1] -0.5258167
+
+53% more likely to choose social if you're a woman in the AR condition thatn if you are a woman in the control condition? 
