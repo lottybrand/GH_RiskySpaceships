@@ -169,26 +169,33 @@ precis(just_conditions_sex)
 
 compare(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex)
 
-#probably can't do below? need to make predictions based on multilevel models?? 
+#trying multilevel predictions for new clusters, p.376 onwards
+#Can't get ensemble to work here (need dummy data for personality and rank as well?!)
+#will just use the just_interactions_sex model
 
-#create new data frame for predicted estimates a la page 297 to use with ensemble below 
+#create new data frame for predicted estimates (p.378) 
 d.pred<- data.frame(
   SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
   AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
-  Sex = c(0,0,0,1,1,1) #men in C, SR, AR, women in C, SR, AR,
+  Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
+  ID = rep(ParticipantID, 6)
 )
+#
+a_p_zeros <- matrix(0,1000,88)
 
-#okay let's try ensemble 
-ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex)
 
-mu <- apply(spaceship.ensemble$link,2,mean)
-mu.PI <- apply(spaceship.ensemble$link,2,PI)
+#can't use ensemble here 
+#spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.pred)
+
+#following page 379
+link.just_interactions_sex <- link(just_interactions_sex, n=1000, data = d.pred,
+                                   replace=list(a_p = a_p_zeros))
 
 
 # now add this info into a nice table of d.pred
-d.pred$means = apply(spaceship.ensemble$link,2,mean)
-d.pred$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
-d.pred$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
+d.pred$means = apply(link.just_interactions_sex,2,mean)
+d.pred$PI.L = apply(link.just_interactions_sex,2,PI)[1,]
+d.pred$PI.U = apply(link.just_interactions_sex,2,PI)[2,]
 
 # make a graph friendly table 
 d.pred$Cond <- ifelse((d.pred$AsocialRisky == "0") & (d.pred$SocialRisky == "0"), 2, 
@@ -208,6 +215,26 @@ Gender[Gender==0] <- "Male"
 Gender[Gender==1] <- "Female"
 d.pred$Sex <- Gender
 
+#now re-plot (don't have to swap axis this time!)
+#so these are predictions based just on the best fitting model (just_interactions_sex) -I think!
+
+limits <- aes(ymax = d.pred$PI.U, ymin = d.pred$PI.L)
+tryingPlot <- ggplot(data = d.pred, aes(Condition, means, shape = Sex))
+tryingPlot + geom_point(data = d.pred, stat="identity", position = position_dodge(width=0.3), size = 3.5) + 
+  geom_errorbar(limits, width = 0.08, position = position_dodge(width=0.3)) +
+  geom_hline(aes(yintercept=0.5), linetype="dashed", show.legend=FALSE) + 
+  theme_bw() + theme(text = element_text(size=12), axis.title.x=element_blank(), axis.title.y=element_text(margin=margin(0,12,0,0))) + 
+  ylab("Proportion Chose Social Information") +
+  scale_y_continuous(limits=c(0,1), expand = c(0,0)) +
+  scale_x_discrete(limits=c("Control", "Social Risky","Asocial Risky")) 
+
+#plot raw data for comparison:
+
+
+#saving this
+write.table(d.pred, file = "d.pred", sep = "\t")
+#reopen this again
+readD.Pred <- read.delim("d.pred", sep = "\t")
 
 
 
@@ -216,15 +243,7 @@ d.pred$Sex <- Gender
 
 
 
-
-##makeing predictions for same clusters or new clusters? pp.376/381
-trying_page378 <- list(
-  prosoc_left = c(0,1,0,1),
-  condition = c(0,0,1,1),
-  actor = rep(2,4))
-
-
-#trying McElreath's order model
+#trying McElreath's order model? what is order?
 
 mm3 <- map2stan(
   alist(
