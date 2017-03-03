@@ -1,3 +1,5 @@
+Model WAICS:
+
                        WAIC pWAIC dWAIC weight    SE  dSE
 just_interactions_sex 349.6   8.4   0.0   0.52  9.77   NA
 just_interactions     351.1   8.0   1.5   0.25  9.11 3.59
@@ -34,3 +36,23 @@ so you're 45% more likely to choose social if you are a woman in the AR conditio
 [1] -0.5258167
 
 53% more likely to choose social if you're a woman in the AR condition thatn if you are a woman in the control condition? 
+
+Full model results:
+         Mean StdDev lower 0.89 upper 0.89 n_eff Rhat
+a       -0.36   0.68      -1.46       0.71  2203    1
+b_s     -0.84   0.50      -1.63      -0.05  1647    1
+b_s_AR   1.59   0.70       0.46       2.70  1777    1
+b_s_SR   1.03   0.67      -0.10       2.07  1769    1
+b_r      0.05   0.16      -0.22       0.29  3000    1
+b_AR     0.18   0.52      -0.66       0.98  2065    1
+b_SR    -0.42   0.48      -1.19       0.33  2201    1
+b_p     -0.09   1.07      -1.85       1.59  3000    1
+sigma_p  0.26   0.19       0.00       0.51  1320    1
+
+Risk Model results:
+         Mean StdDev lower 0.89 upper 0.89 n_eff Rhat
+a       -2.41   0.93      -3.89      -0.98   398 1.00
+b_s      1.19   1.15      -0.72       2.96   388 1.00
+b_r      1.20   0.52       0.44       2.05   384 1.00
+b_SR    -0.82   0.65      -1.84       0.25   375 1.00
+sigma_p  0.30   0.21       0.00       0.60   446 1.01

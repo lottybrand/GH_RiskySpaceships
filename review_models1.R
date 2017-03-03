@@ -215,12 +215,18 @@ Gender[Gender==0] <- "Male"
 Gender[Gender==1] <- "Female"
 d.pred$Sex <- Gender
 
+#saving d.pred
+#write.table(d.pred, file = "d.pred", sep = "\t")
+#reopen this again
+#readD.Pred <- read.delim("d.pred", sep = "\t")
+
 #now re-plot (don't have to swap axis this time!)
 #so these are predictions based just on the best fitting model (just_interactions_sex) -I think!
 
+
 limits <- aes(ymax = d.pred$PI.U, ymin = d.pred$PI.L)
-tryingPlot <- ggplot(data = d.pred, aes(Condition, means, shape = Sex))
-tryingPlot + geom_point(data = d.pred, stat="identity", position = position_dodge(width=0.3), size = 3.5) + 
+predPlot <- ggplot(data = d.pred, aes(Condition, means, shape = Sex))
+predPlot + geom_point(data = d.pred, stat="identity", position = position_dodge(width=0.3), size = 3.5) + 
   geom_errorbar(limits, width = 0.08, position = position_dodge(width=0.3)) +
   geom_hline(aes(yintercept=0.5), linetype="dashed", show.legend=FALSE) + 
   theme_bw() + theme(text = element_text(size=12), axis.title.x=element_blank(), axis.title.y=element_text(margin=margin(0,12,0,0))) + 
@@ -228,22 +234,74 @@ tryingPlot + geom_point(data = d.pred, stat="identity", position = position_dodg
   scale_y_continuous(limits=c(0,1), expand = c(0,0)) +
   scale_x_discrete(limits=c("Control", "Social Risky","Asocial Risky")) 
 
+
 #plot raw data for comparison:
 
+#Sex as factor for this plot:
+Sex <- myData$Sex
+Sex[Sex==0] <- "Male"
+Sex[Sex==1] <- "Female"
+myData$Sex <- Sex
 
-#saving this
-write.table(d.pred, file = "d.pred", sep = "\t")
-#reopen this again
-readD.Pred <- read.delim("d.pred", sep = "\t")
+#Condition rename also
+myData$CONDITION[myData$CONDITION==1]  <- "Social Risky"
+myData$CONDITION[myData$CONDITION==2] <- "Control"
+myData$CONDITION[myData$CONDITION==3] <- "Asocial Risky"
+myData$Condition <- myData$CONDITION
 
 
+rawPlot <- ggplot(myData, aes(Condition, Choice, shape = Sex)) +
+  stat_summary(fun.y=mean, position= position_dodge(0.3), geom = "point", size = 2.8) +
+  stat_summary(fun.data = mean_cl_normal, position = position_dodge(0.3), geom = "errorbar", width = 0.08) +
+  geom_hline(aes(yintercept=0.5), linetype="dashed", show.legend=FALSE) +
+  theme_bw() +
+  scale_x_discrete(limits = c("Control", "Social Risky", "Asocial Risky")) +
+  scale_y_continuous(limits=c(0,1))
+rawPlot
+
+#trying risk model, need to faff with data to remove Control condition (where risk=0 always)
+
+myRiskData <- myData[!(myData$CONDITION==2),]
+
+#sort the relevant variables
+Rank <- myRiskData$Rank 
+Rank[Rank == 3] <- 2
+Rank[Rank == 5] <- 3
+NRanks = length(unique(Rank))
+myRiskData$Rank <- Rank
+
+#need to actually use this as bunch of participant IDs missing now:
+NParticipants = length(unique(myRiskData$ID))
+OldID <- myRiskData$ID
+ParticipantID <- array(0,length(myRiskData$ID))
+for (index in 1:NParticipants){
+  ParticipantID[OldID == unique(OldID)[index]] = index
+}
+#I don't know why this had to be done but the below needs to be done, some sort of labelling mess:
+myRiskData$ParticipantID <- ParticipantID
+ID <- ParticipantID
+myRiskData$ParticipantID <- ID
+myRiskData$ID <- ParticipantID
+
+RiskModel <- map2stan(
+  alist(
+    RISK ~ dbinom(1, p),
+    logit(p) <- a + a_p[ID]*sigma_p + 
+      b_s*Sex + 
+      b_r*Rank + 
+      b_SR*Sex*Rank,
+      a ~ dnorm(0,10),
+      c(b_s, b_r, b_SR) ~ dnorm(0,4),
+      a_p[ID] ~ dnorm(0,1),
+      sigma_p ~ dcauchy(0,1)
+  ),
+  data=myRiskData, constraints=list(sigma_p="lower=0"), 
+  warmup=1000, iter=2000, chains=1, cores=1 )
+
+precis(RiskModel)
 
 
-
-
-
-
-#trying McElreath's order model? what is order?
+#trying McElreath's order model? what is order here? is this modelling both rank as an ordered and random variable at the same time??
 
 mm3 <- map2stan(
   alist(
