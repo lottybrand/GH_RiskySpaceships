@@ -283,6 +283,8 @@ for (index in 1:NParticipants){
 myRiskData$ID <- ParticipantID
 Sex <- myRiskData$SEX
 Risk <- myRiskData$RISK
+myRiskData$Personality <- myRiskData$personalityScoreR2
+
 
 RiskModel <- map2stan(
   alist(
@@ -290,9 +292,10 @@ RiskModel <- map2stan(
     logit(p) <- a + a_p[ID]*sigma_p + 
       b_s*Sex + 
       b_r*Rank + 
-      b_SR*Sex*Rank,
+      b_SR*Sex*Rank +
+      b_p*Personality,
       a ~ dnorm(0,10),
-      c(b_s, b_r, b_SR) ~ dnorm(0,4),
+      c(b_s, b_r, b_SR, b_p) ~ dnorm(0,4),
       a_p[ID] ~ dnorm(0,1),
       sigma_p ~ dcauchy(0,1)
   ),
