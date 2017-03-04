@@ -147,7 +147,7 @@ just_interactions_sex <- map2stan(
 
 plot(coeftab(just_interactions_sex))
 coeftab(just_interactions_sex)
-precis(just_interactions_sex)
+plot(precis(just_interactions_sex,pars=c("a", "b_s", "b_s_AR", "b_s_SR"), depth=2))
 
 #just conditions and sex
 just_conditions_sex <- map2stan(
@@ -226,7 +226,7 @@ d.pred$Sex <- Gender
 
 limits <- aes(ymax = d.pred$PI.U, ymin = d.pred$PI.L)
 predPlot <- ggplot(data = d.pred, aes(Condition, means, shape = Sex))
-predPlot + geom_point(data = d.pred, stat="identity", position = position_dodge(width=0.3), size = 3.5) + 
+predPlot + geom_point(data = d.pred, stat="identity", position = position_dodge(width=0.3), size = 2.8) + 
   geom_errorbar(limits, width = 0.08, position = position_dodge(width=0.3)) +
   geom_hline(aes(yintercept=0.5), linetype="dashed", show.legend=FALSE) + 
   theme_bw() + theme(text = element_text(size=12), axis.title.x=element_blank(), axis.title.y=element_text(margin=margin(0,12,0,0))) + 
@@ -254,13 +254,14 @@ rawPlot <- ggplot(myData, aes(Condition, Choice, shape = Sex)) +
   stat_summary(fun.y=mean, position= position_dodge(0.3), geom = "point", size = 2.8) +
   stat_summary(fun.data = mean_cl_normal, position = position_dodge(0.3), geom = "errorbar", width = 0.08) +
   geom_hline(aes(yintercept=0.5), linetype="dashed", show.legend=FALSE) +
-  theme_bw() +
+  theme_bw() + theme(text = element_text(size=12), axis.title.x=element_blank(), axis.title.y=element_text(margin=margin(0,12,0,0))) + 
+  ylab("Proportion Chose Social Information") +
   scale_x_discrete(limits = c("Control", "Social Risky", "Asocial Risky")) +
   scale_y_continuous(limits=c(0,1))
 rawPlot
 
 #trying risk model, need to faff with data to remove Control condition (where risk=0 always)
-
+###### MUST re-load myData at top of the file, then follow the steps below here, before running Risk model, otherwise lots of errors (R remembers everything..!)######
 myRiskData <- myData[!(myData$CONDITION==2),]
 
 #sort the relevant variables
@@ -278,10 +279,10 @@ for (index in 1:NParticipants){
   ParticipantID[OldID == unique(OldID)[index]] = index
 }
 #I don't know why this had to be done but the below needs to be done, some sort of labelling mess:
-myRiskData$ParticipantID <- ParticipantID
-ID <- ParticipantID
-myRiskData$ParticipantID <- ID
+
 myRiskData$ID <- ParticipantID
+Sex <- myRiskData$SEX
+Risk <- myRiskData$RISK
 
 RiskModel <- map2stan(
   alist(
@@ -299,7 +300,7 @@ RiskModel <- map2stan(
   warmup=1000, iter=2000, chains=1, cores=1 )
 
 precis(RiskModel)
-
+plot(precis(RiskModel,pars=c("a","b_s","b_r","b_SR"),depth=2))
 
 #trying McElreath's order model? what is order here? is this modelling both rank as an ordered and random variable at the same time??
 
