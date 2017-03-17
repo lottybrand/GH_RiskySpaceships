@@ -240,9 +240,9 @@ Gender[Gender==1] <- "Female"
 d.pred$Sex <- Gender
 
 #saving d.pred
-#write.table(d.pred, file = "d.pred", sep = "\t")
+write.table(d.pred, file = "d.pred", sep = "\t")
 #reopen this again
-#readD.Pred <- read.delim("d.pred", sep = "\t")
+readD.Pred <- read.delim("d.pred", sep = "\t")
 
 #now re-plot (don't have to swap axis this time!)
 #so these are predictions based just on the best fitting model (just_interactions_sex) -I think!
@@ -258,6 +258,16 @@ predPlot + geom_point(data = d.pred, stat="identity", position = position_dodge(
   scale_y_continuous(limits=c(0,1), expand = c(0,0)) +
   scale_x_discrete(limits=c("Control", "Social Risky","Asocial Risky")) 
 
+meansTable = tapply(d.pred$means, list(d.pred$Condition, d.pred$Sex),mean)
+meansTable
+upperTable = tapply(d.pred$PI.U, list(d.pred$Condition, d.pred$Sex),mean)
+upperTable
+lowerTable = tapply(d.pred$PI.L, list(d.pred$Condition, d.pred$Sex),mean)
+lowerTable
+
+data.frame(meansTable)
+data.frame(upperTable)
+data.frame(lowerTable)
 
 #plot raw data for comparison:
 
