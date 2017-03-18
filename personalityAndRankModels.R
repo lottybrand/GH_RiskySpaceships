@@ -1,97 +1,107 @@
 
 library(plyr)
 library(rethinking)
+library(lsr)
 
 #checking for personality Q differences
 #remodelling for risk as outcome and looking at rank*sex effects
 
-myData <- read.delim('./spaceshipDataStan.txt')
+myData <- read.delim('./spaceshipData.txt')
 myData = na.omit(myData)
 
-dens(myData$personalityScore)
-mean(myData$personalityScore)
+# compute personality score without Qs 7 & 8 to check if still sex difference for Thesis corrections
+myData$personalityScoreREMOVED <- myData$q1 + myData$q2 + 
+                                  myData$q3 + myData$q4 + myData$q5 + myData$q6 +
+                                  myData$q9 + myData$q10 + myData$q11 + myData$q12  
 
-Personality <- myData$personalityScore
-Personality2 <- myData$personalityScoreR2
+myData$personalityScoreREMOVED <- myData$personalityScoreREMOVED/60
+myData$personalityScore_removed <- myData$personalityScoreREMOVED*60
 
-#preparing the data for the model:
 
-colnames(myData)[3] <- "Gender"
-myData$Sex <- myData$SEX -1
+PersonalityScore <- myData$personalityScore
+PersonalityR2 <- myData$personalityScoreR2
+PersonalityR <- myData$personalityScoreREMOVED
 
-colnames(myData)[9] <- "CondName"
-myData$Condition <- myData$CONDITION -2
+colnames(myData)[2] <- "Gender"
+Sex <- myData$SEX -1
+Gender <- myData$Gender
 
-Choice <- myData$CHOICE -1
-myData$Choice <- myData$CHOICE -1
+#colnames(myData)[9] <- "CondName"
+#myData$Condition <- myData$CONDITION -2
+
+#Choice <- myData$CHOICE -1
+#myData$Choice <- myData$CHOICE -1
 
 #if else for k-1 dummy variables
 
-myData$AsocialRisky <- ifelse(myData$CondName == "saferisky", 1, 0)
-myData$SocialRisky <- ifelse(myData$CondName == "riskysafe", 1, 0)
+#myData$AsocialRisky <- ifelse(myData$CondName == "saferisky", 1, 0)
+#myData$SocialRisky <- ifelse(myData$CondName == "riskysafe", 1, 0)
 
-Rank <- myData$Rank 
-Rank[Rank == 3] <- 2
-Rank[Rank == 5] <- 3
-NRanks = length(unique(Rank))
-myData$Rank <- Rank
+#Rank <- myData$Rank 
+#Rank[Rank == 3] <- 2
+#Rank[Rank == 5] <- 3
+#NRanks = length(unique(Rank))
+#myData$Rank <- Rank
 
-NParticipants = length(unique(myData$ID))
-OldID <- myData$ID
-ParticipantID <- array(0,length(myData$ID))
-for (index in 1:NParticipants){
-  ParticipantID[OldID == unique(OldID)[index]] = index
-}
+#NParticipants = length(unique(myData$ID))
+#OldID <- myData$ID
+#ParticipantID <- array(0,length(myData$ID))
+#for (index in 1:NParticipants){
+#  ParticipantID[OldID == unique(OldID)[index]] = index
+#}
 
-myData$ParticipantID <- ParticipantID
+#myData$ParticipantID <- ParticipantID
+
 
 myRiskData <- myData[!(myData$CONDITION==2),]
-
+myPData <- myData[!duplicated(myData$ID),]
+PersonalityR2 <- myPData$personalityScoreR2
+PersonalityR <- myPData$personalityScoreREMOVED
+Sex <- myPData$SEX
 
 mM.pers <- map(
   alist(
-        Personality ~ dnorm(mu, sigma),
+        PersonalityR ~ dnorm(mu, sigma),
         mu <- a + b*Sex,  
         a ~ dnorm(20,10),
         b ~ dnorm(0,10),
         sigma ~ dunif(0,10)
   ),
-  data=myData )
+  data=myPData )
 
 precis(mM.pers)
 
 mM.pers2 <- map(
   alist(
-    Personality ~ dnorm(mu, sigma),
+    PersonalityR ~ dnorm(mu, sigma),
     mu <- a ,  
     a ~ dnorm(20,10),
     sigma ~ dunif(0,10)
   ),
-  data=myData )
+  data=myPData )
 
 precis(mM.pers2)
 compare(mM.pers,mM.pers2)
 
 
-mM.pers3 <- map(
-  alist(
-    Personality2 ~ dnorm(mu, sigma),
-    mu <- a ,  
-    a ~ dnorm(0,10),
-    sigma ~ dunif(0,10)
-  ),
-  data=myData )
-precis(mM.pers3)
+personalityPlot
+personalityPlot <- ggplot(myPData, aes(myPData$personalityScore_removed, fill = Gender)) 
+personalityPlot + scale_fill_grey(start = 0.1, end = 0.9) + geom_density(alpha = 0.2) + theme_bw() + 
+  theme(text = element_text(size=12), axis.title.y=element_text(margin=margin(0,12,0,0))) +
+  scale_y_continuous(limits=c(0,0.09), expand = c(0,0)) +
+  scale_x_continuous(limits=c(0,60), expand= c(0,0)) +
+  xlab("\nRisk-taking Score") + ylab("Density") 
 
-mM.pers4 <- map(
-  alist(
-    Personality2 ~ dnorm(mu, sigma),
-    mu <- a + b*Sex,  
-    a ~ dnorm(0,10),
-    b ~ dnorm(0,10),
-    sigma ~ dunif(0,10)
-  ),
-  data=myData )
+personalityMean = tapply(myData$personalityScore_removed, list(myData$Gender),mean)
+personalityMean
+#Load percentage data file for choice percents and CIs
 
-precis(mM.pers4)
-compare(mM.pers4,mM.pers3)
+personalitySd = tapply(myData$personalityScore_removed, list(myData$Gender),sd)
+personalitySd
+
+cohensD(myPData$personalityScore_removed[myPData$SEX==2],myPData$personalityScore_removed[myPData$SEX==1])
+cohensD(myPData$personalityScore[myPData$SEX==2],myPData$personalityScore[myPData$SEX==1])
+
+
+myData$personalityScore_removed[myData$SEX==2]
+myData$personalityScore_removed[myData$SEX==1]
