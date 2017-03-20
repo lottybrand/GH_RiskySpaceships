@@ -92,11 +92,11 @@ personalityPlot + scale_fill_grey(start = 0.1, end = 0.9) + geom_density(alpha =
   scale_x_continuous(limits=c(0,60), expand= c(0,0)) +
   xlab("\nRisk-taking Score") + ylab("Density") 
 
-personalityMean = tapply(myData$personalityScore_removed, list(myData$Gender),mean)
+personalityMean = tapply(myPData$personalityScore_removed, list(myPData$Gender),mean)
 personalityMean
 #Load percentage data file for choice percents and CIs
 
-personalitySd = tapply(myData$personalityScore_removed, list(myData$Gender),sd)
+personalitySd = tapply(myPData$personalityScore_removed, list(myPData$Gender),sd)
 personalitySd
 
 cohensD(myPData$personalityScore_removed[myPData$SEX==2],myPData$personalityScore_removed[myPData$SEX==1])
