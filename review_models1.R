@@ -200,49 +200,64 @@ compare(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_inte
 #create new data frame for predicted estimates (p.378) 
 #trying to use ensemble
 
-d.pred<- data.frame(
+d.predNew<- data.frame(
   SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
   AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
   Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
-  ID = rep(2, 6) #random placeholder?
+  ID = rep(2, 6), #random placeholder?
+  Personality = rep(2,6), #random placeholder?
+  Rank = rep(2,6) #random placeholder?
 )
 
-#doing ParticipantID x 6 creates a dataframe of the 262 ppts x 6... makes a dataframe big enough for ensemble...but...obviously not right...
+spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew)
+
+a_p_zeros <- matrix(0,1000,88)
+
+link.spaceship.ensemble <- link(spaceship.ensemble, n=1000, data = d.predNew,
+                                  replace=list(a_p = a_p_zeros))
+
+# this part won't work...
+d.predNew$means = apply(link.spaceship.ensemble,2,mean)
+d.predNew$PI.L = apply(link.spaceship.ensemble,2,PI)[1,]
+d.predNew$PI.U = apply(link.spaceship.ensemble,2,PI)[2,]
 
 
+#Try for full model:
 
-#can't use ensemble here 
-spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.pred)
+d.predNew<- data.frame(
+  SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
+  AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
+  Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
+  ID = rep(2, 6), #random placeholder?
+  Personality = rep(2,6), #random placeholder?
+  Rank = rep(2,6) #random placeholder?
+)
+
+link.FullModel <- link(FullModel, n=1000, data=d.predNew,
+                       replace=list(a_p = a_p_zeros))
 
 
-#trying to make it work with ensemble:
-#link.spaceship.ensemble <- link(spaceship.ensemble, n=1000, data = d.pred,
-                                  # replace=list(a_p = a_p_zeros))
+d.predNew$means = apply(link.FullModel,2,mean)
+d.predNew$PI.L = apply(link.FullModel,2,PI)[1,]
+d.predNew$PI.U = apply(link.FullModel,2,PI)[2,]
 
+# make a graph friendly dataframe
+d.predNew$Cond <- ifelse((d.predNew$AsocialRisky == "0") & (d.predNew$SocialRisky == "0"), 2, 
+                      +    ifelse((d.predNew$SocialRisky=="1") & (d.predNew$AsocialRisky == "0"), 1,
+                                  +    ifelse((d.predNew$AsocialRisky == "1"), 3, 99)))
 
-
-# now add this info into a nice table of d.pred
-d.pred$means = apply(link.just_interactions_sex,2,mean)
-d.pred$PI.L = apply(link.just_interactions_sex,2,PI)[1,]
-d.pred$PI.U = apply(link.just_interactions_sex,2,PI)[2,]
-
-# make a graph friendly table 
-d.pred$Cond <- ifelse((d.pred$AsocialRisky == "0") & (d.pred$SocialRisky == "0"), 2, 
-                      +    ifelse((d.pred$SocialRisky=="1") & (d.pred$AsocialRisky == "0"), 1,
-                                  +    ifelse((d.pred$AsocialRisky == "1"), 3, 99)))
-
-namedCond <- d.pred$Cond
+namedCond <- d.predNew$Cond
 namedCond[namedCond==1] <- "Social Risky"
 namedCond[namedCond==2] <- "Control"
 namedCond[namedCond==3] <- "Asocial Risky"
-d.pred$Condition <- namedCond
+d.predNew$Condition <- namedCond
 
-colnames(d.pred)[3] <- "Sex.num"
+colnames(d.predNew)[3] <- "Sex.num"
 
-Gender <- d.pred$Sex.num
+Gender <- d.predNew$Sex.num
 Gender[Gender==0] <- "Male"
 Gender[Gender==1] <- "Female"
-d.pred$Sex <- Gender
+d.predNew$Sex <- Gender
 
 #saving d.pred
 write.table(d.pred, file = "d.pred", sep = "\t")
@@ -259,7 +274,9 @@ d.predNew<- data.frame(
   SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
   AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
   Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
-  ID = rep(2,6) #random placeholder?
+  ID = rep(2,6), #random placeholder?
+  Personality = rep(2,6),
+  Rank = rep(2,6) #placeholder?
 )
 
 post <- extract.samples(just_interactions_sex)
@@ -268,20 +285,6 @@ a_p_sims <- matrix(a_p_sims,1000,88)
 link.just_interactions_sex <- link(just_interactions_sex, n=1000, data=d.predNew,
                                    replace=list(a_p = a_p_sims))
 
-#what about trying full model?
-post <- extract.samples(FullModel)
-a_p_sims <- rnorm(1000,0,post$sigma_p)
-a_p_sims <- matrix(a_p_sims,1000,88)
-
-a_p_zeros <- matrix(0,1000,88)
-link.FullModel <- link(FullModel, n=1000, data=d.predNew,
-                                   replace=list(a_p = a_p_zeros))
-
-
-# now add this info into a nice table of d.predNew
-d.predNew$means = apply(link.just_interactions_sex,2,mean)
-d.predNew$PI.L = apply(link.just_interactions_sex,2,PI)[1,]
-d.predNew$PI.U = apply(link.just_interactions_sex,2,PI)[2,]
 
 # make a graph friendly table 
 d.predNew$Cond <- ifelse((d.predNew$AsocialRisky == "0") & (d.predNew$SocialRisky == "0"), 2, 
@@ -301,6 +304,8 @@ Gender[Gender==0] <- "Male"
 Gender[Gender==1] <- "Female"
 d.predNew$Sex <- Gender
 
+
+#MAKE THE PLOT#
 
 limits <- aes(ymax = d.predNew$PI.U, ymin = d.predNew$PI.L)
 predPlot <- ggplot(data = d.predNew, aes(Condition, means, shape = Sex))
