@@ -204,7 +204,7 @@ d.pred<- data.frame(
   SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
   AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
   Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
-  ID = rep(ParticipantID, 6) #random placeholder?
+  ID = rep(2, 6) #random placeholder?
 )
 
 #doing ParticipantID x 6 creates a dataframe of the 262 ppts x 6... makes a dataframe big enough for ensemble...but...obviously not right...
@@ -263,11 +263,19 @@ d.predNew<- data.frame(
 )
 
 post <- extract.samples(just_interactions_sex)
-a_p_sims <- rnorm(88000,post$sigma_p)
+a_p_sims <- rnorm(1000,0,post$sigma_p)
 a_p_sims <- matrix(a_p_sims,1000,88)
 link.just_interactions_sex <- link(just_interactions_sex, n=1000, data=d.predNew,
                                    replace=list(a_p = a_p_sims))
 
+#what about trying full model?
+post <- extract.samples(FullModel)
+a_p_sims <- rnorm(1000,0,post$sigma_p)
+a_p_sims <- matrix(a_p_sims,1000,88)
+
+a_p_zeros <- matrix(0,1000,88)
+link.FullModel <- link(FullModel, n=1000, data=d.predNew,
+                                   replace=list(a_p = a_p_zeros))
 
 
 # now add this info into a nice table of d.predNew
