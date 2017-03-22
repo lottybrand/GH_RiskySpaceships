@@ -35,7 +35,7 @@ for (index in 1:NParticipants){
   ParticipantID[OldID == unique(OldID)[index]] = index
 }
 myData$ParticipantID <- ParticipantID
-
+Personality <- myData$Personality
 
 #McElreath's multilevel with non-centred parameterisation for full_model
 
@@ -98,7 +98,7 @@ NullModel <- map2stan(
   data=myData, constraints=list(sigma_p="lower=0"), 
   warmup=1000, iter=2000, chains=3, cores=3 )
 
-precis(NullModel)
+#precis(NullModel)
 
 ###Just Sex
 
@@ -115,7 +115,7 @@ just_sex <- map2stan(
   data=myData, constraints=list(sigma_p="lower=0"),
   warmup=1000, iter=2000, chains=3, cores=3 )
 
-precis(just_sex)
+#precis(just_sex)
 
 ###Just Conditions
 
@@ -132,7 +132,7 @@ just_conditions <- map2stan(
   data=myData, constraints=list(sigma_p="lower=0"),
   warmup=1000, iter=6000, chains=1, cores=1 )
 
-precis(just_conditions)
+#precis(just_conditions)
 
 #Just Interactions
 
@@ -149,7 +149,7 @@ just_interactions <- map2stan(
   data=myData, constraints=list(sigma_p="lower=0"), 
   warmup=1000, iter=2000, chains=3, cores=3 )
 
-precis(just_interactions)
+#precis(just_interactions)
 
 
 #Just interactions and sex
@@ -198,22 +198,27 @@ compare(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_inte
 #will just use the just_interactions_sex model
 
 #create new data frame for predicted estimates (p.378) 
+#trying to use ensemble
+
 d.pred<- data.frame(
   SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
   AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
   Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
-  ID = rep(ParticipantID, 6)
+  ID = rep(ParticipantID, 6) #random placeholder?
 )
-#
-a_p_zeros <- matrix(0,1000,88)
+
+#doing ParticipantID x 6 creates a dataframe of the 262 ppts x 6... makes a dataframe big enough for ensemble...but...obviously not right...
+
 
 
 #can't use ensemble here 
-#spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.pred)
+spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.pred)
 
-#following page 379
-link.just_interactions_sex <- link(just_interactions_sex, n=1000, data = d.pred,
-                                   replace=list(a_p = a_p_zeros))
+
+#trying to make it work with ensemble:
+#link.spaceship.ensemble <- link(spaceship.ensemble, n=1000, data = d.pred,
+                                  # replace=list(a_p = a_p_zeros))
+
 
 
 # now add this info into a nice table of d.pred
@@ -245,18 +250,60 @@ write.table(d.pred, file = "d.pred", sep = "\t")
 readD.Pred <- read.delim("d.pred", sep = "\t")
 
 #now re-plot (don't have to swap axis this time!)
+
 #so these are predictions based just on the best fitting model (just_interactions_sex) -I think!
 
+#Now trying d.predNew - simulating new actor intercepts, based on just best fitting model, bottom page 379
 
-limits <- aes(ymax = d.pred$PI.U, ymin = d.pred$PI.L)
-predPlot <- ggplot(data = d.pred, aes(Condition, means, shape = Sex))
-predPlot + geom_point(data = d.pred, stat="identity", position = position_dodge(width=0.3), size = 2.8) + 
+d.predNew<- data.frame(
+  SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
+  AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
+  Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
+  ID = rep(2,6) #random placeholder?
+)
+
+post <- extract.samples(just_interactions_sex)
+a_p_sims <- rnorm(88000,post$sigma_p)
+a_p_sims <- matrix(a_p_sims,1000,88)
+link.just_interactions_sex <- link(just_interactions_sex, n=1000, data=d.predNew,
+                                   replace=list(a_p = a_p_sims))
+
+
+
+# now add this info into a nice table of d.predNew
+d.predNew$means = apply(link.just_interactions_sex,2,mean)
+d.predNew$PI.L = apply(link.just_interactions_sex,2,PI)[1,]
+d.predNew$PI.U = apply(link.just_interactions_sex,2,PI)[2,]
+
+# make a graph friendly table 
+d.predNew$Cond <- ifelse((d.predNew$AsocialRisky == "0") & (d.predNew$SocialRisky == "0"), 2, 
+                      +    ifelse((d.predNew$SocialRisky=="1") & (d.predNew$AsocialRisky == "0"), 1,
+                                  +    ifelse((d.predNew$AsocialRisky == "1"), 3, 99)))
+
+namedCond <- d.predNew$Cond
+namedCond[namedCond==1] <- "Social Risky"
+namedCond[namedCond==2] <- "Control"
+namedCond[namedCond==3] <- "Asocial Risky"
+d.predNew$Condition <- namedCond
+
+colnames(d.predNew)[3] <- "Sex.num"
+
+Gender <- d.predNew$Sex.num
+Gender[Gender==0] <- "Male"
+Gender[Gender==1] <- "Female"
+d.predNew$Sex <- Gender
+
+
+limits <- aes(ymax = d.predNew$PI.U, ymin = d.predNew$PI.L)
+predPlot <- ggplot(data = d.predNew, aes(Condition, means, shape = Sex))
+predPlot + geom_point(data = d.predNew, stat="identity", position = position_dodge(width=0.3), size = 2.8) + 
   geom_errorbar(limits, width = 0.08, position = position_dodge(width=0.3)) +
   geom_hline(aes(yintercept=0.5), linetype="dashed", show.legend=FALSE) + 
   theme_bw() + theme(text = element_text(size=12), axis.title.x=element_blank(), axis.title.y=element_text(margin=margin(0,12,0,0))) + 
   ylab("Proportion Chose Social Information") +
   scale_y_continuous(limits=c(0,1), expand = c(0,0)) +
   scale_x_discrete(limits=c("Control", "Social Risky","Asocial Risky")) 
+
 
 meansTable = tapply(d.pred$means, list(d.pred$Condition, d.pred$Sex),mean)
 meansTable
@@ -265,9 +312,6 @@ upperTable
 lowerTable = tapply(d.pred$PI.L, list(d.pred$Condition, d.pred$Sex),mean)
 lowerTable
 
-data.frame(meansTable)
-data.frame(upperTable)
-data.frame(lowerTable)
 
 #plot raw data for comparison:
 
