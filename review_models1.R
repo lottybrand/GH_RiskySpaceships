@@ -63,27 +63,27 @@ plot(precis(FullModel,pars=c("a","b_s","b_AR","b_SR","b_s_AR","b_s_SR","b_r","b_
 
 ## Alternative full suggested by McElreath, replacing sex*condition with personality*condition)
 
-FullModel2 <- map2stan(
-  alist(
-    Choice ~ dbinom(1, p),
-    logit(p) <- a + a_p[ID]*sigma_p + 
-      b_s*Sex + 
-      b_AR*AsocialRisky + 
-      b_SR*SocialRisky +
-      b_p_AR*Personality*AsocialRisky + 
-      b_p_SR*Personality*SocialRisky +
-      b_r*Rank +
-      b_p*Personality,
-    a ~ dnorm(0,10),
-    c(b_s, b_p_AR, b_p_SR, b_r, b_AR, b_SR, b_p) ~ dnorm(0,4),
-    a_p[ID] ~ dnorm(0,1),
-    sigma_p ~ dcauchy(0,1)
-  ),
-  data=myData, constraints=list(sigma_p="lower=0"), 
-  warmup=1000, iter=2000, chains=3, cores=3 )
+#FullModel2 <- map2stan(
+#  alist(
+#    Choice ~ dbinom(1, p),
+#    logit(p) <- a + a_p[ID]*sigma_p + 
+#      b_s*Sex + 
+#      b_AR*AsocialRisky + 
+#      b_SR*SocialRisky +
+#      b_p_AR*Personality*AsocialRisky + 
+#      b_p_SR*Personality*SocialRisky +
+#      b_r*Rank +
+#      b_p*Personality,
+#    a ~ dnorm(0,10),
+#    c(b_s, b_p_AR, b_p_SR, b_r, b_AR, b_SR, b_p) ~ dnorm(0,4),
+#    a_p[ID] ~ dnorm(0,1),
+#    sigma_p ~ dcauchy(0,1)
+#  ),
+#  data=myData, constraints=list(sigma_p="lower=0"), 
+#  warmup=1000, iter=2000, chains=3, cores=3 )
 
-precis(FullModel2)
-compare(FullModel,FullModel2)
+#precis(FullModel2)
+#compare(FullModel,FullModel2)
 
 ### Null model
 
@@ -193,12 +193,9 @@ precis(just_conditions_sex)
 
 compare(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex)
 
-#trying multilevel predictions for new clusters, p.376 onwards
-#Can't get ensemble to work here (need dummy data for personality and rank as well?!)
-#will just use the just_interactions_sex model
 
+#trying multilevel predictions: p.376 onwards
 #create new data frame for predicted estimates (p.378) 
-#trying to use ensemble
 
 d.predNew<- data.frame(
   SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
@@ -206,23 +203,35 @@ d.predNew<- data.frame(
   Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
   ID = rep(2, 6), #random placeholder?
   Personality = rep(2,6), #random placeholder?
-  Rank = rep(2,6) #random placeholder?
+  Rank = rep(0,6) #random placeholder?
 )
+
+#create spaceship ensemble like page 204
 
 spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew)
 
+#str(spaceship.ensemble)
+
+#trying predictions for new clusters from page 379
+
 a_p_zeros <- matrix(0,1000,88)
 
+#this won't work with ensemble, need to do it for a single model
 link.spaceship.ensemble <- link(spaceship.ensemble, n=1000, data = d.predNew,
                                   replace=list(a_p = a_p_zeros))
 
-# this part won't work...
-d.predNew$means = apply(link.spaceship.ensemble,2,mean)
-d.predNew$PI.L = apply(link.spaceship.ensemble,2,PI)[1,]
-d.predNew$PI.U = apply(link.spaceship.ensemble,2,PI)[2,]
+
+# the next lines didn't  work when it had (link.spaceship.ensemble,2,mean) like page 379, link.spaceship.ensemble isn't a thing. 
+
+# so now not sure which "cluster" or individual these predictions are for...all for "actor 2..?"
+
+d.predNew$means = apply(spaceship.ensemble$link,2,mean)
+d.predNew$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
+d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
 
 
-#Try for full model:
+
+##### Try average intercepts for Full Model, p.378 ######
 
 d.predNew<- data.frame(
   SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
@@ -237,38 +246,17 @@ link.FullModel <- link(FullModel, n=1000, data=d.predNew,
                        replace=list(a_p = a_p_zeros))
 
 
+
 d.predNew$means = apply(link.FullModel,2,mean)
 d.predNew$PI.L = apply(link.FullModel,2,PI)[1,]
 d.predNew$PI.U = apply(link.FullModel,2,PI)[2,]
 
-# make a graph friendly dataframe
-d.predNew$Cond <- ifelse((d.predNew$AsocialRisky == "0") & (d.predNew$SocialRisky == "0"), 2, 
-                      +    ifelse((d.predNew$SocialRisky=="1") & (d.predNew$AsocialRisky == "0"), 1,
-                                  +    ifelse((d.predNew$AsocialRisky == "1"), 3, 99)))
 
-namedCond <- d.predNew$Cond
-namedCond[namedCond==1] <- "Social Risky"
-namedCond[namedCond==2] <- "Control"
-namedCond[namedCond==3] <- "Asocial Risky"
-d.predNew$Condition <- namedCond
 
-colnames(d.predNew)[3] <- "Sex.num"
 
-Gender <- d.predNew$Sex.num
-Gender[Gender==0] <- "Male"
-Gender[Gender==1] <- "Female"
-d.predNew$Sex <- Gender
 
-#saving d.pred
-write.table(d.pred, file = "d.pred", sep = "\t")
-#reopen this again
-readD.Pred <- read.delim("d.pred", sep = "\t")
 
-#now re-plot (don't have to swap axis this time!)
-
-#so these are predictions based just on the best fitting model (just_interactions_sex) -I think!
-
-#Now trying d.predNew - simulating new actor intercepts, based on just best fitting model, bottom page 379
+### OR TRY simulating new actor intercepts, based on just best fitting model, bottom page 379
 
 d.predNew<- data.frame(
   SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
@@ -285,8 +273,12 @@ a_p_sims <- matrix(a_p_sims,1000,88)
 link.just_interactions_sex <- link(just_interactions_sex, n=1000, data=d.predNew,
                                    replace=list(a_p = a_p_sims))
 
+d.predNew$means = apply(link.just_interactions_sex,2,mean)
+d.predNew$PI.L = apply(link.just_interactions_sex,2,PI)[1,]
+d.predNew$PI.U = apply(link.just_interactions_sex,2,PI)[2,]
 
-# make a graph friendly table 
+
+###### MAKE THE PLOT FRIENDLY TABLE  ######
 d.predNew$Cond <- ifelse((d.predNew$AsocialRisky == "0") & (d.predNew$SocialRisky == "0"), 2, 
                       +    ifelse((d.predNew$SocialRisky=="1") & (d.predNew$AsocialRisky == "0"), 1,
                                   +    ifelse((d.predNew$AsocialRisky == "1"), 3, 99)))
@@ -304,8 +296,13 @@ Gender[Gender==0] <- "Male"
 Gender[Gender==1] <- "Female"
 d.predNew$Sex <- Gender
 
+#saving d.predNew
+write.table(d.predNew, file = "d.predNew", sep = "\t")
+#reopen this again
+#readD.Pred <- read.delim("d.predNew", sep = "\t")
 
-#MAKE THE PLOT#
+
+###### MAKE THE PLOT #######
 
 limits <- aes(ymax = d.predNew$PI.U, ymin = d.predNew$PI.L)
 predPlot <- ggplot(data = d.predNew, aes(Condition, means, shape = Sex))
