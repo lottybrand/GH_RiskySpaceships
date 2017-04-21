@@ -203,7 +203,7 @@ d.predNew<- data.frame(
   Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
   ID = rep(2, 6), #random placeholder?
   Personality = rep(2,6), #random placeholder?
-  Rank = rep(0,6) #random placeholder?
+  Rank = rep(2,6) #random placeholder?
 )
 
 #create spaceship ensemble like page 204
