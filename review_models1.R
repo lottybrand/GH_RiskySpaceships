@@ -216,9 +216,16 @@ spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just
 
 a_p_zeros <- matrix(0,1000,88)
 
-#this won't work with ensemble, need to do it for a single model
+#this won't work with ensemble, just creates "list", not a new object as it does for a single model
 link.spaceship.ensemble <- link(spaceship.ensemble, n=1000, data = d.predNew,
                                   replace=list(a_p = a_p_zeros))
+#this doesn't work either:
+link.spaceship.ensemble <- link(spaceship.ensemble, data = d.predNew)
+
+
+#single model works:
+#link.just.interactions <- link(just_interactions, n=1000, data = d.predNew,
+#                               replace=list(a_p = a_p_zeros))
 
 
 # the next lines didn't  work when it had (link.spaceship.ensemble,2,mean) like page 379, link.spaceship.ensemble isn't a thing. 
@@ -228,6 +235,8 @@ link.spaceship.ensemble <- link(spaceship.ensemble, n=1000, data = d.predNew,
 d.predNew$means = apply(spaceship.ensemble$link,2,mean)
 d.predNew$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
 d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
+
+#### NOW SKIP TO "MAKE A PLOT FRIENDLY TABLE, LINE 285 ######
 
 
 
@@ -253,10 +262,7 @@ d.predNew$PI.U = apply(link.FullModel,2,PI)[2,]
 
 
 
-
-
-
-### OR TRY simulating new actor intercepts, based on just best fitting model, bottom page 379
+### OR TRY simulating new actor intercepts instead, based on just best fitting model, bottom page 379
 
 d.predNew<- data.frame(
   SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
@@ -315,11 +321,11 @@ predPlot + geom_point(data = d.predNew, stat="identity", position = position_dod
   scale_x_discrete(limits=c("Control", "Social Risky","Asocial Risky")) 
 
 
-meansTable = tapply(d.pred$means, list(d.pred$Condition, d.pred$Sex),mean)
+meansTable = tapply(d.predNew$means, list(d.predNew$Condition, d.predNew$Sex),mean)
 meansTable
-upperTable = tapply(d.pred$PI.U, list(d.pred$Condition, d.pred$Sex),mean)
+upperTable = tapply(d.predNew$PI.U, list(d.predNew$Condition, d.predNew$Sex),mean)
 upperTable
-lowerTable = tapply(d.pred$PI.L, list(d.pred$Condition, d.pred$Sex),mean)
+lowerTable = tapply(d.predNew$PI.L, list(d.predNew$Condition, d.predNew$Sex),mean)
 lowerTable
 
 
