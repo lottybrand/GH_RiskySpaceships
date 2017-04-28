@@ -210,20 +210,34 @@ d.predNew<- data.frame(
 
 a_p_zeros <- matrix(0,1000,88)
 
+spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew)
+                               
 spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew,
-                               replace = list(a_p = a_p_zeros))
+                    replace = list(a_p = a_p_zeros))
 
 d.predNew$means = apply(spaceship.ensemble$link,2,mean)
 d.predNew$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
 d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
 
-
-#str(spaceship.ensemble)
+str(spaceship.ensemble)
 
 ###### OR create predictions for new clusters via p.379 #########
 
+#this line: #post <- extract.samples(spaceship.ensemble)# doesn't work so try simulating based on best models and smuggling that into ensemble?
+#it seems to work, but not sure if it's legit, need to double check how it's working
+#also doesn't seem to make much difference. 
 
 
+post <- extract.samples(just_interactions_sex)
+a_p_sims <- rnorm(88000,0,post$sigma_p)
+a_p_sims <- matrix(a_p_sims,1000,88)
+
+spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew,
+                               replace = list(a_p = a_p_sims))
+ 
+d.predNew$means = apply(spaceship.ensemble$link,2,mean)
+d.predNew$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
+d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
 
 #### NOW SKIP TO "MAKE A PLOT FRIENDLY TABLE, LINE 285 ######
 
