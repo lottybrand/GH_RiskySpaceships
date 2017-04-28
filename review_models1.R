@@ -206,35 +206,24 @@ d.predNew<- data.frame(
   Rank = rep(2,6) #random placeholder?
 )
 
-#create spaceship ensemble like page 204
-
-spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew)
-
-#str(spaceship.ensemble)
-
-#trying predictions for new clusters from page 379
+#create spaceship ensemble like page 204 but use replace from page 379 for an average participant
 
 a_p_zeros <- matrix(0,1000,88)
 
-#this won't work with ensemble, just creates "list", not a new object as it does for a single model
-link.spaceship.ensemble <- link(spaceship.ensemble, n=1000, data = d.predNew,
-                                  replace=list(a_p = a_p_zeros))
-#this doesn't work either:
-link.spaceship.ensemble <- link(spaceship.ensemble, data = d.predNew)
-
-
-#single model works:
-#link.just.interactions <- link(just_interactions, n=1000, data = d.predNew,
-#                               replace=list(a_p = a_p_zeros))
-
-
-# the next lines didn't  work when it had (link.spaceship.ensemble,2,mean) like page 379, link.spaceship.ensemble isn't a thing. 
-
-# so now not sure which "cluster" or individual these predictions are for...all for "actor 2..?"
+spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew,
+                               replace = list(a_p = a_p_zeros))
 
 d.predNew$means = apply(spaceship.ensemble$link,2,mean)
 d.predNew$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
 d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
+
+
+#str(spaceship.ensemble)
+
+###### OR create predictions for new clusters via p.379 #########
+
+
+
 
 #### NOW SKIP TO "MAKE A PLOT FRIENDLY TABLE, LINE 285 ######
 
@@ -242,46 +231,45 @@ d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
 
 ##### Try average intercepts for Full Model, p.378 ######
 
-d.predNew<- data.frame(
-  SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
-  AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
-  Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
-  ID = rep(2, 6), #random placeholder?
-  Personality = rep(2,6), #random placeholder?
-  Rank = rep(2,6) #random placeholder?
-)
+#d.predNew<- data.frame(
+#  SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
+#  AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
+#  Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
+#  ID = rep(2, 6), #random placeholder?
+#  Personality = rep(2,6), #random placeholder?
+#  Rank = rep(2,6) #random placeholder?
+#)
 
-link.FullModel <- link(FullModel, n=1000, data=d.predNew,
-                       replace=list(a_p = a_p_zeros))
+#link.FullModel <- link(FullModel, n=1000, data=d.predNew,
+#                       replace=list(a_p = a_p_zeros))
 
-
-
-d.predNew$means = apply(link.FullModel,2,mean)
-d.predNew$PI.L = apply(link.FullModel,2,PI)[1,]
-d.predNew$PI.U = apply(link.FullModel,2,PI)[2,]
+#
+#d.predNew$means = apply(link.FullModel,2,mean)
+#d.predNew$PI.L = apply(link.FullModel,2,PI)[1,]
+#d.predNew$PI.U = apply(link.FullModel,2,PI)[2,]
 
 
 
 ### OR TRY simulating new actor intercepts instead, based on just best fitting model, bottom page 379
 
-d.predNew<- data.frame(
-  SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
-  AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
-  Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
-  ID = rep(2,6), #random placeholder?
-  Personality = rep(2,6),
-  Rank = rep(2,6) #placeholder?
-)
+#d.predNew<- data.frame(
+#  SocialRisky = c(0,1,0,0,1,0), #this is to balance all possible combinations, see d.pred at end
+#  AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
+#  Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
+#  ID = rep(2,6), #random placeholder?
+#  Personality = rep(2,6),
+#  Rank = rep(2,6) #placeholder?
+#)
 
-post <- extract.samples(just_interactions_sex)
-a_p_sims <- rnorm(1000,0,post$sigma_p)
-a_p_sims <- matrix(a_p_sims,1000,88)
-link.just_interactions_sex <- link(just_interactions_sex, n=1000, data=d.predNew,
-                                   replace=list(a_p = a_p_sims))
+#post <- extract.samples(just_interactions_sex)
+#a_p_sims <- rnorm(1000,0,post$sigma_p)
+#a_p_sims <- matrix(a_p_sims,1000,88)
+#link.just_interactions_sex <- link(just_interactions_sex, n=1000, data=d.predNew,
+#                                   replace=list(a_p = a_p_sims))
 
-d.predNew$means = apply(link.just_interactions_sex,2,mean)
-d.predNew$PI.L = apply(link.just_interactions_sex,2,PI)[1,]
-d.predNew$PI.U = apply(link.just_interactions_sex,2,PI)[2,]
+#d.predNew$means = apply(link.just_interactions_sex,2,mean)
+#d.predNew$PI.L = apply(link.just_interactions_sex,2,PI)[1,]
+#d.predNew$PI.U = apply(link.just_interactions_sex,2,PI)[2,]
 
 
 ###### MAKE THE PLOT FRIENDLY TABLE  ######
@@ -329,7 +317,7 @@ lowerTable = tapply(d.predNew$PI.L, list(d.predNew$Condition, d.predNew$Sex),mea
 lowerTable
 
 
-#plot raw data for comparison:
+##### PLOTTING RAW DATA FOR COMPARISON #######
 
 #Sex as factor for this plot:
 Sex <- myData$Sex
