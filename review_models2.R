@@ -49,10 +49,9 @@ FullModel <- map2stan(
       b_SR*SocialRisky +
       b_s_AR*Sex*AsocialRisky + 
       b_s_SR*Sex*SocialRisky +
-      b_r*Rank +
-      b_p*Personality,
+      b_r*Rank,
     a ~ dnorm(0,10),
-    c(b_s, b_s_AR, b_s_SR, b_r, b_AR, b_SR, b_p) ~ dnorm(0,4),
+    c(b_s, b_s_AR, b_s_SR, b_r, b_AR, b_SR) ~ dnorm(0,4),
     a_p[ID] ~ dnorm(0,1),
     sigma_p ~ dcauchy(0,1)
   ),
@@ -60,7 +59,7 @@ FullModel <- map2stan(
   warmup=1000, iter=2000, chains=3, cores=3 )
 
 precis(FullModel)
-plot(precis(FullModel,pars=c("a","b_s","b_AR","b_SR","b_s_AR","b_s_SR","b_r","b_p")))
+plot(precis(FullModel,pars=c("a","b_s","b_AR","b_SR","b_s_AR","b_s_SR","b_r")))
 
 ## Alternative full suggested by McElreath, replacing sex*condition with personality*condition)
 
@@ -203,7 +202,6 @@ d.predNew<- data.frame(
   AsocialRisky = c(0,0,1,0,0,1), # ie when SR is 0 AR is 1 etc etc 
   Sex = c(0,0,0,1,1,1), #men in C, SR, AR, women in C, SR, AR,
   ID = rep(2, 6), #random placeholder?
-  Personality = rep(2,6), #random placeholder?
   Rank = rep(2,6) #random placeholder?
 )
 
@@ -211,7 +209,7 @@ d.predNew<- data.frame(
 
 a_p_zeros <- matrix(0,1000,88)
 
-spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew)
+#spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew)
 
 spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew,
                                replace = list(a_p = a_p_zeros))
@@ -229,16 +227,16 @@ str(spaceship.ensemble)
 #also doesn't seem to make much difference. 
 
 
-post <- extract.samples(just_interactions_sex)
-a_p_sims <- rnorm(88000,0,post$sigma_p)
-a_p_sims <- matrix(a_p_sims,1000,88)
+#post <- extract.samples(just_interactions_sex)
+#a_p_sims <- rnorm(88000,0,post$sigma_p)
+#a_p_sims <- matrix(a_p_sims,1000,88)
 
-spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew,
-                               replace = list(a_p = a_p_sims))
+#spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew,
+#                               replace = list(a_p = a_p_sims))
 
-d.predNew$means = apply(spaceship.ensemble$link,2,mean)
-d.predNew$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
-d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
+#d.predNew$means = apply(spaceship.ensemble$link,2,mean)
+#d.predNew$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
+#d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
 
 #### NOW SKIP TO "MAKE A PLOT FRIENDLY TABLE, LINE 285 ######
 
@@ -306,7 +304,7 @@ Gender[Gender==1] <- "Female"
 d.predNew$Sex <- Gender
 
 #saving d.predNew
-write.table(d.predNew, file = "d.predNew_03.05.17", sep = "\t")
+write.table(d.predNew, file = "d.predNew_05.05.17", sep = "\t")
 #reopen this again
 #readD.Pred <- read.delim("d.predNew", sep = "\t")
 
