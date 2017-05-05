@@ -2,6 +2,7 @@
 
 #trying multi-level model with ppt random effect for all models after review for spaceships:
 #choice is also recoded here so that social = 1
+#no a priori reason to have pers in fulModel
 
 
 library(plyr)
@@ -90,10 +91,10 @@ plot(precis(FullModel,pars=c("a","b_s","b_AR","b_SR","b_s_AR","b_s_SR","b_r","b_
 NullModel <- map2stan(
   alist(
     Choice ~ dbinom(1, p),
-        logit(p) <- a + a_p[ID]*sigma_p, 
-        a ~ dnorm(0,10),
-        a_p[ID] ~ dnorm(0,1),
-        sigma_p ~ dcauchy(0,1)
+    logit(p) <- a + a_p[ID]*sigma_p, 
+    a ~ dnorm(0,10),
+    a_p[ID] ~ dnorm(0,1),
+    sigma_p ~ dcauchy(0,1)
   ),
   data=myData, constraints=list(sigma_p="lower=0"), 
   warmup=1000, iter=2000, chains=3, cores=3 )
@@ -105,12 +106,12 @@ NullModel <- map2stan(
 just_sex <- map2stan(
   alist(
     Choice ~ dbinom(1, p),
-        logit(p) <- a + a_p[ID]*sigma_p +
-        b_s*Sex,
-        a ~ dnorm(0,10),
-        b_s ~ dnorm(0,4),
-        a_p[ID] ~ dnorm(0,1),
-        sigma_p ~ dcauchy(0,1)
+    logit(p) <- a + a_p[ID]*sigma_p +
+      b_s*Sex,
+    a ~ dnorm(0,10),
+    b_s ~ dnorm(0,4),
+    a_p[ID] ~ dnorm(0,1),
+    sigma_p ~ dcauchy(0,1)
   ),
   data=myData, constraints=list(sigma_p="lower=0"),
   warmup=1000, iter=2000, chains=3, cores=3 )
@@ -122,12 +123,12 @@ just_sex <- map2stan(
 just_conditions <- map2stan(
   alist(
     Choice ~ dbinom(1, p),
-        logit(p) <- a + a_p[ID]*sigma_p +
-        b_AR*AsocialRisky + b_SR*SocialRisky,  
-        a ~ dnorm(0,10),
-        c(b_AR, b_SR) ~ dnorm(0,4),
-        a_p[ID] ~ dnorm(0,1),
-        sigma_p ~ dcauchy(0,1)
+    logit(p) <- a + a_p[ID]*sigma_p +
+      b_AR*AsocialRisky + b_SR*SocialRisky,  
+    a ~ dnorm(0,10),
+    c(b_AR, b_SR) ~ dnorm(0,4),
+    a_p[ID] ~ dnorm(0,1),
+    sigma_p ~ dcauchy(0,1)
   ),
   data=myData, constraints=list(sigma_p="lower=0"),
   warmup=1000, iter=6000, chains=1, cores=1 )
@@ -141,10 +142,10 @@ just_interactions <- map2stan(
     Choice ~ dbinom(1, p),
     logit(p) <- a + a_p[ID]*sigma_p + 
       b_s_AR*Sex*AsocialRisky + b_s_SR*Sex*SocialRisky,
-      a ~ dnorm(0,10),
-      c(b_s_AR, b_s_SR) ~ dnorm(0,4),
-      a_p[ID] ~ dnorm(0,1),
-      sigma_p ~ dcauchy(0,1)
+    a ~ dnorm(0,10),
+    c(b_s_AR, b_s_SR) ~ dnorm(0,4),
+    a_p[ID] ~ dnorm(0,1),
+    sigma_p ~ dcauchy(0,1)
   ),
   data=myData, constraints=list(sigma_p="lower=0"), 
   warmup=1000, iter=2000, chains=3, cores=3 )
@@ -161,10 +162,10 @@ just_interactions_sex <- map2stan(
       b_s*Sex + 
       b_s_AR*Sex*AsocialRisky + 
       b_s_SR*Sex*SocialRisky,
-      a ~ dnorm(0,10),
-      c(b_s, b_s_AR, b_s_SR) ~ dnorm(0,4),
-      a_p[ID] ~ dnorm(0,1),
-      sigma_p ~ dcauchy(0,1)
+    a ~ dnorm(0,10),
+    c(b_s, b_s_AR, b_s_SR) ~ dnorm(0,4),
+    a_p[ID] ~ dnorm(0,1),
+    sigma_p ~ dcauchy(0,1)
   ),
   data=myData, constraints=list(sigma_p="lower=0"), 
   warmup=1000, iter=2000, chains=3, cores=3 )
@@ -181,10 +182,10 @@ just_conditions_sex <- map2stan(
       b_s*Sex + 
       b_AR*AsocialRisky + 
       b_SR*SocialRisky,
-      a ~ dnorm(0,10),
-      c(b_s, b_AR, b_SR) ~ dnorm(0,4),
-      a_p[ID] ~ dnorm(0,1),
-      sigma_p ~ dcauchy(0,1)
+    a ~ dnorm(0,10),
+    c(b_s, b_AR, b_SR) ~ dnorm(0,4),
+    a_p[ID] ~ dnorm(0,1),
+    sigma_p ~ dcauchy(0,1)
   ),
   data=myData, constraints=list(sigma_p="lower=0"), 
   warmup=1000, iter=2000, chains=3, cores=3 )
@@ -211,9 +212,9 @@ d.predNew<- data.frame(
 a_p_zeros <- matrix(0,1000,88)
 
 spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew)
-                               
+
 spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew,
-                    replace = list(a_p = a_p_zeros))
+                               replace = list(a_p = a_p_zeros))
 
 d.predNew$means = apply(spaceship.ensemble$link,2,mean)
 d.predNew$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
@@ -234,7 +235,7 @@ a_p_sims <- matrix(a_p_sims,1000,88)
 
 spaceship.ensemble <- ensemble(FullModel,NullModel,just_sex,just_conditions,just_interactions,just_interactions_sex,just_conditions_sex, data=d.predNew,
                                replace = list(a_p = a_p_sims))
- 
+
 d.predNew$means = apply(spaceship.ensemble$link,2,mean)
 d.predNew$PI.L = apply(spaceship.ensemble$link,2,PI)[1,]
 d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
@@ -288,8 +289,8 @@ d.predNew$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
 
 ###### MAKE THE PLOT FRIENDLY TABLE  ######
 d.predNew$Cond <- ifelse((d.predNew$AsocialRisky == "0") & (d.predNew$SocialRisky == "0"), 2, 
-                      +    ifelse((d.predNew$SocialRisky=="1") & (d.predNew$AsocialRisky == "0"), 1,
-                                  +    ifelse((d.predNew$AsocialRisky == "1"), 3, 99)))
+                         +    ifelse((d.predNew$SocialRisky=="1") & (d.predNew$AsocialRisky == "0"), 1,
+                                     +    ifelse((d.predNew$AsocialRisky == "1"), 3, 99)))
 
 namedCond <- d.predNew$Cond
 namedCond[namedCond==1] <- "Social Risky"
@@ -390,10 +391,10 @@ RiskModel <- map2stan(
       b_r*Rank + 
       b_SR*Sex*Rank +
       b_p*Personality,
-      a ~ dnorm(0,10),
-      c(b_s, b_r, b_SR, b_p) ~ dnorm(0,4),
-      a_p[ID] ~ dnorm(0,1),
-      sigma_p ~ dcauchy(0,1)
+    a ~ dnorm(0,10),
+    c(b_s, b_r, b_SR, b_p) ~ dnorm(0,4),
+    a_p[ID] ~ dnorm(0,1),
+    sigma_p ~ dcauchy(0,1)
   ),
   data=myRiskData, constraints=list(sigma_p="lower=0"), 
   warmup=1000, iter=2000, chains=1, cores=1 )

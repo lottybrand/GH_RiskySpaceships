@@ -1,6 +1,5 @@
 
-## Want to run these now as before but with ppt random effect too:
-###Models that I want to put into the ensemble 
+## Models that I want to put into the ensemble 
 
 library(plyr)
 library(rethinking)
@@ -40,6 +39,10 @@ AR_Subset <- myData[myData$CondName == "saferisky",]
 SR_Subset <- myData[myData$CondName == "riskysafe",]
 C_Subset<- myData[myData$CondName =="safesafe",]
 
+AR_Subset <- AR_Subset[!duplicated(AR_Subset$ID),]
+SR_Subset <- SR_Subset[!duplicated(SR_Subset$ID),]
+C_Subset <- C_Subset[!duplicated(C_Subset$ID),]
+
 table(AR_Subset$Gender)
 table(SR_Subset$Gender)
 table(C_Subset$Gender)
@@ -49,13 +52,9 @@ table(C_Subset$Gender)
 
 full_model <- map2stan(
   alist(Choice ~ dbinom(1, p),
-        logit(p) <- a + b_s*Sex + b_AR*AsocialRisky + b_SR*SocialRisky + b_s_AR*Sex*AsocialRisky + b_s_SR*Sex*SocialRisky + b_r*Rank + a_p[ParticipantID] + a_r[Rank],  
+        logit(p) <- a + b_s*Sex + b_AR*AsocialRisky + b_SR*SocialRisky + b_s_AR*Sex*AsocialRisky + b_s_SR*Sex*SocialRisky + b_r*Rank,  
         a ~ dnorm(0,10),
-        c( b_s, b_AR, b_SR, b_s_AR, b_s_SR, b_r) ~ dnorm(0,4),
-        a_p[ParticipantID] ~ dnorm(0, sigma_p),
-        a_r[Rank] ~ dnorm(0, sigma_r),
-        sigma_p ~ dcauchy(0,1),
-        sigma_r ~ dcauchy(0,1)
+        c( b_s, b_AR, b_SR, b_s_AR, b_s_SR, b_r) ~ dnorm(0,4)
   ),
   data=myData, warmup=1000, iter=6000, chains=1, cores=1 )
 
@@ -160,8 +159,8 @@ d.pred$PI.U = apply(spaceship.ensemble$link,2,PI)[2,]
 
 # make a graph friendly table 
 d.pred$Cond <- ifelse((d.pred$AsocialRisky == "0") & (d.pred$SocialRisky == "0"), 2, 
-                      +    ifelse((d.pred$SocialRisky=="1") & (d.pred$AsocialRisky == "0"), 1,
-                                  +    ifelse((d.pred$AsocialRisky == "1"), 3, 99)))
+                           +    ifelse((d.pred$SocialRisky=="1") & (d.pred$AsocialRisky == "0"), 1,
+                                       +    ifelse((d.pred$AsocialRisky == "1"), 3, 99)))
 
 namedCond <- d.pred$Cond
 namedCond[namedCond==1] <- "Social Risky"
@@ -180,15 +179,15 @@ d.pred$Sex <- Gender
 cutoff <- data.frame(yintercept=0.5, cutoff=factor(0.5))
 limits <- aes(ymax = d.pred$PI.U, ymin = d.pred$PI.L)
 tryingPlot <- ggplot(data = d.pred, aes(Condition, means, colour = Sex))
-tryingPlot + geom_point(data = d.pred, stat="identity", size = 3.5) + 
-  geom_errorbar(limits, width = 0.08) +
-  geom_hline(aes(yintercept=yintercept, linetype=cutoff), data=cutoff, show.legend=FALSE) + 
-  theme_bw() + theme(text = element_text(size=18)) + ylab("Proportion Chose Asocial Info") + ylim(0,1) +
-  scale_x_discrete(limits=c("Social Risky", "Control","Asocial Risky")) +
-  ggtitle("Model Predicted Means")
-
+  tryingPlot + geom_point(data = d.pred, stat="identity", size = 3.5) + 
+    geom_errorbar(limits, width = 0.08) +
+    geom_hline(aes(yintercept=yintercept, linetype=cutoff), data=cutoff, show.legend=FALSE) + 
+    theme_bw() + theme(text = element_text(size=18)) + ylab("Proportion Chose Asocial Info") + ylim(0,1) +
+    scale_x_discrete(limits=c("Social Risky", "Control","Asocial Risky")) +
+    ggtitle("Model Predicted Means")
+  
 #plot raw data
-
+  
 rawData <- read.delim('./rawPercentages.txt')
 levels(rawData$Condition)[levels(rawData$Condition)=="RiskyAsocial"] <- "Asocial Risky"
 levels(rawData$Condition)[levels(rawData$Condition)=="RiskySocial"] <- "Social Risky"
