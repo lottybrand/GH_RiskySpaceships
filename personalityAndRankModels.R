@@ -86,12 +86,12 @@ compare(mM.pers,mM.pers2)
 
 
 personalityPlot
-personalityPlot <- ggplot(myPData, aes(myPData$personalityScore_removed, fill = Gender)) 
+personalityPlot <- ggplot(myPData, aes(myPData$personalityScore, fill = Gender)) 
 personalityPlot + scale_fill_grey(start = 0.1, end = 0.9) + geom_density(alpha = 0.2) + theme_bw() + 
   theme(text = element_text(size=12), axis.title.y=element_text(margin=margin(0,12,0,0))) +
   scale_y_continuous(limits=c(0,0.09), expand = c(0,0)) +
   scale_x_continuous(limits=c(0,60), expand= c(0,0)) +
-  xlab("\nRisk-taking Score") + ylab("Density") 
+  xlab("\nRisky impulsivity Score") + ylab("Density") 
 
 personalityMean = tapply(myPData$personalityScore_removed, list(myPData$Sex),mean)
 personalityMean
