@@ -356,7 +356,9 @@ rawPlot <- ggplot(myData, aes(Condition, Choice, shape = Sex)) +
 rawPlot
 
 #trying risk model, need to faff with data to remove Control condition (where risk=0 always)
-###### MUST re-load myData at top of the file, then follow the steps below here, before running Risk model, otherwise lots of errors (R remembers everything..!)######
+###### MUST re-load myData at top of the file (including lines 13-39), then follow the steps below here, before running Risk model, otherwise lots of errors 
+#(R remembers everything, it's all in its environment, so clear environment, and re-load myData as stated here)######
+
 myRiskData <- myData[!(myData$CONDITION==2),]
 
 #sort the relevant variables
@@ -373,12 +375,9 @@ ParticipantID <- array(0,length(myRiskData$ID))
 for (index in 1:NParticipants){
   ParticipantID[OldID == unique(OldID)[index]] = index
 }
-#I don't know why this had to be done but the below needs to be done, some sort of labelling mess:
 
 myRiskData$ID <- ParticipantID
-Sex <- myRiskData$SEX
-Risk <- myRiskData$RISK
-myRiskData$Personality <- myRiskData$personalityScoreR2
+
 
 
 RiskModel <- map2stan(
@@ -398,7 +397,7 @@ RiskModel <- map2stan(
   warmup=1000, iter=2000, chains=1, cores=1 )
 
 precis(RiskModel)
-plot(precis(RiskModel,pars=c("a","b_s","b_r","b_SR"),depth=2))
+plot(precis(RiskModel,pars=c("a","b_s","b_r","b_SR","b_p"),depth=2))
 
 #trying McElreath's order model? what is order here? is this modelling both rank as an ordered and random variable at the same time??
 
